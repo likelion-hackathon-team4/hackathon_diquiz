@@ -1,0 +1,155 @@
+@font-face {
+  font-family: 'TheJamsil5Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+.title {font-family: 'TheJamsil5Bold';}
+
+@font-face {
+  font-family: 'GongGothicMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+.context {font-family: 'GongGothicMedium';} 
+
+.nav-link {
+  color: grey; 
+  background-color: rgb(207, 207, 207); 
+}
+
+.profile {
+  background-color: rgb(207, 207, 207);
+  border-radius: 50%;
+  padding: 20px;
+  width: 100px;
+  height: 100px;
+}
+
+.GoLogin{
+  background-color: #7DD592;
+  width: 300px;
+  height: 50px;
+}
+
+body {
+  background-color : #240040;
+}
+
+.login-form {position: relative; z-index: 2;}
+.login-form h1 {
+  font-size: 70px;
+  margin-top: 70px;
+  margin-right: 100px;
+  color: #DBD8FF;
+  text-align: right;
+}
+.login-form h2 {
+  font-size: 40px;
+  color: #DBD8FF;
+  text-align: right;
+  margin-right: 100px;
+
+}
+
+.display-container {
+  max-width: 415px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* nav */
+.navbar {
+  padding: 1rem;
+  clear: both;
+}
+
+.logo {
+  margin-left: auto;
+  clear: both;
+}
+
+.logo img {
+  width: 40px;
+  top:20px;
+}
+
+/* hamburger menu*/
+#menu__toggle {
+  opacity: 0;
+}
+#menu__toggle:checked + .menu__btn > span {
+  transform: rotate(45deg);
+}
+#menu__toggle:checked + .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0deg);
+}
+#menu__toggle:checked + .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+#menu__toggle:checked ~ .menu__box {
+  left: 0 !important;
+}
+
+.menu__btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 1;
+}
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #DBD8FF;
+  transition-duration: .25s;
+}
+.menu__btn > span::before {
+  content: '';
+  top: -8px;
+}
+.menu__btn > span::after {
+  content: '';
+  top: 8px;
+}
+.menu__box {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 450px;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  background-color: white;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+  transition-duration: .25s;
+}
+
+.menu__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.menu__all {
+  text-align: center;
+}
