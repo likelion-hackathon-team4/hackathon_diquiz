@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Point</title>
+    <link rel="stylesheet" href="./Point.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav">
+            <div class="page-name">
+                <div class="my-quiz">My point</div>
+            </div>  
+            <div class="hamburger-menu">
+                <input id="menu__toggle" type="checkbox" class="checkbox" />
+                <label class="menu__btn" for="menu__toggle">
+                    <span></span>
+                </label>    
+                <nav class="menu__box">
+                    <ul class="menu__list">
+                        <div class="menu__all"></div>
+                            <a href="#"><div class="profile"><img src="./profile.jpg" alt="프로필이미지"></div></a>
+                            <p class="mine"><b>노은아<br>My Point</b></p>
+                            <li><a class="menu__item" href="#my2">프로필</a></li>
+                            <li><a class="menu__item" href="#my3">내가 만든 문제</a></li>
+                            <li><a class="menu__item" href="#">오답노트</a></li>
+                            <li><a class="menu__item" href="#">내 포인트관리</a></li>
+                    </ul>
+                </nav>
+            </div> 
+            <div class="main-logo">
+                <a href="#" target="_blank">
+                  <img calss="logo-img" src="./image 3.jpg" alt="로고">
+                </a>
+            </div>
+        </div>    
+    </nav>
+    <div class="wrap">
+        <div class="wrap-section">
+            <div class="point-container">
+                <p class="explain1">적립 포인트 확인</p>
+                <p class="explain2">누적된 적립포인트를 확인 할 수 있습니다.</p>
+                <span class="point-bar-container">
+                    <progress id="point-bar" class="point-bar" value="0" max="100"></progress>
+                    <div class="icon-point">
+                        <div class="point-icon"><i class="fas fa-heart"></i></div>
+                        <div class="current-points"><span id="current-points-value">0</span>P</div>
+                    </div>
+                </span>
+        </div>
+        <div class="checkpoint-container">
+            <div class="today-point">
+                <p>오늘 획득 포인트: 50P</p>
+            </div>
+            <div class="all-point">
+                <p>누적 포인트: 1500P</p>
+            </div>
+        </div>
+    </div>
+    </div>   
+    <script type="text/javascript" src="./Point.js"></script>
+</body>
+</html>
