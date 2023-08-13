@@ -17,6 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from post import views
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.board_list, name='board_list'),  # 게시물 목록 페이지
+    path('board/<int:board_id>/', views.board_detail, name='board_detail'),  # 게시물 상세 페이지
+    path('board/<int:board_id>/add_comment/', views.add_comment, name='add_comment'),  # 댓글 추가
+    path('board/<int:board_id>/like/', views.like_board, name='like_board'),  # 게시물 좋아요
+    path('comment/<int:comment_id>/like/', views.like_comment, name='like_comment'),  # 댓글 좋아요
+    path('board/create/', views.create_board, name='create_board'), # 이미지 업로드
 ]
