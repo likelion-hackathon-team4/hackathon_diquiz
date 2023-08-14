@@ -1,0 +1,221 @@
+@font-face {
+  font-family: "TheJamsil5Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+.title {
+  font-family: "TheJamsil5Bold";
+}
+
+@font-face {
+  font-family: "GongGothicMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+.context {
+  font-family: "GongGothicMedium";
+}
+
+body {
+  background-color: #eceff1;
+}
+
+.display-container {
+  width: 300px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+
+.container {
+  position: absolute;
+}
+/* nav */
+.navbar {
+  padding: 1rem;
+  clear: both;
+}
+
+.logo {
+  margin-left: auto;
+  clear: both;
+}
+
+.logo img {
+  width: 50px;
+  top: 20px;
+}
+
+.nav-text {
+  right: 1365px;
+}
+
+/* hamburger menu*/
+#menu__toggle {
+  opacity: 0;
+}
+#menu__toggle:checked + .menu__btn > span {
+  transform: rotate(45deg);
+}
+#menu__toggle:checked + .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0deg);
+}
+#menu__toggle:checked + .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+#menu__toggle:checked ~ .menu__box {
+  left: 0 !important;
+}
+
+.menu__btn {
+  position: fixed;
+  top: 47px;
+  left: 30px;
+  width: 35px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 1;
+}
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: black;
+  transition-duration: 0.25s;
+}
+.menu__btn > span::before {
+  content: "";
+  top: -10px;
+}
+.menu__btn > span::after {
+  content: "";
+  top: 10px;
+}
+.menu__box {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 450px;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  background-color: #eceff1;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+  transition-duration: 0.25s;
+}
+
+.menu__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.menu__all {
+  text-align: center;
+}
+
+.profile img {
+  border-radius: 50%;
+  padding: 20px;
+  width: 150px;
+  height: 150px;
+}
+
+.menu__item {
+  display: block;
+  padding: 12px 24px;
+  color: #333;
+  border-radius: 10px;
+  background: #5eec61;
+  padding: 20px;
+  margin: 20px;
+  width: 250px;
+  height: 60px;
+  right: 20%;
+  margin-right: 50%;
+  font-weight: 600;
+  font-size: 18px;
+  text-decoration: none;
+  transition-duration: 0.25s;
+  opacity: 1;
+  transition: opacity 1s ease 0s;
+  text-align: center;
+}
+.menu__item:hover {
+  opacity: 0.28;
+}
+
+.mine {
+  text-align: center;
+}
+
+.logoutbtn {
+  display: block;
+  padding: 12px 24px;
+  color: #333;
+  border-radius: 10px;
+}
+
+/* search */
+.inputbox {
+  border-radius: 10px;
+  border-color: #5eec61;
+  border: 2.3px solid;
+  width: 300px;
+  height: 35px;
+  margin: 0 auto;
+}
+
+.bootsearch {
+  border-color: #5eec61;
+}
+
+input[type="text"] {
+  background: none;
+  border: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.bootsearch {
+  text-align: center;
+}
+
+.nav-link {
+  color: grey;
+  background-color: rgb(207, 207, 207);
+}
+
+.communitynav {
+  position: absolute;
+  width: 600px;
+  top: 70px;
+}
+
+.contents {
+  border: 1px;
+  border-radius: 5px;
+}
