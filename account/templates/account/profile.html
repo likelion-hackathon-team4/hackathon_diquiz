@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'account/css/profile.css' %}" >
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <div class="profile-box">
+        <h1>프로필 수정</h1>
+        <p>대표 프로필과 별명을 수정하실 수 있습니다.</p>
+        <div class="profile-container">
+          <img src="./profile.png" alt="프로필" class="profile-img" />
+          <div style="flex-direction: row">
+            <button class="profile-button">사진 변경</button>
+            <button class="profile-button">삭제</button>
+          </div>
+        </div>
+        <div class="nickname">별명</div>
+      </div>
+      <div class="profile-box">
+        <div>내가 만든 문제</div>
+      </div>
+    </div>
+  </body>
+</html>

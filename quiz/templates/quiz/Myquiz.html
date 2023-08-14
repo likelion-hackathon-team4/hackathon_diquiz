@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Quiz</title>
+    <link rel="stylesheet" href="./Myquiz.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav">
+            <div class="page-name">
+                <div class="my-quiz">내가 퀴즈 출제하기</div>
+            </div>  
+            <div class="hamburger-menu">
+                <input id="menu__toggle" type="checkbox" class="checkbox" />
+                <label class="menu__btn" for="menu__toggle">
+                    <span></span>
+                </label>
+                <nav class="menu__box">
+                    <ul class="menu__list">
+                        <div class="menu__all"></div>
+                            <a href="#"><div class="profile"><img src="./profile.jpg" alt="프로필이미지"></div></a>
+                            <p class="mine"><b>노은아<br>My Point</b></p>
+                            <li><a class="menu__item" href="#my2">프로필</a></li>
+                            <li><a class="menu__item" href="#my3">내가 만든 문제</a></li>
+                            <li><a class="menu__item" href="#">오답노트</a></li>
+                            <li><a class="menu__item" href="#">내 포인트관리</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="main-logo">
+                <a href="#" target="_blank">
+                  <img calss="logo-img" src="./image 3.jpg" alt="로고">
+                </a>
+            </div>
+        </div>    
+    </nav>
+    <div class="wrap">
+        <div class="wrap-section">
+        <div class="quiz-container">
+            <div class="question">
+                <p class="question-p">디지털 문제를 출제 해주세요!</p>
+                <p class="question-pp">문제 입력</p>
+            <input id="question-input" type="text" placeholder="문제를 입력하세요!">
+            <div class="hint">
+                <p class="hint-label">힌트 입력</p>
+                <input id="hint-input" type="text" placeholder="힌트를 입력하세요!">
+            </div>
+            <div class="answer">
+                <p class="question-a">답안을 선택해주세요 (O 또는 X)</p>
+            <div class="answer-options">
+                <label class="radioBtn">
+                    <input type="radio" name="answer" value="O" checked/>
+                    <span>O</span> 
+                </label>
+                <label class="radioBtn">
+                    <input type="radio" name="answer" value="X"/>
+                    <span>X</span>
+                </label>
+            </div>
+        </div>
+            <button class="add-question-button">출제하기</button>
+        </div>
+        </div>
+        <div class="myquiz-container">
+            <p>내가 출제한 문제  <ul id="quiz-list"></ul></p>
+        </div>
+        <button class="send-online">운영진에게 내가 만든 문제 보내기!</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="./Myquiz.js"></script>
+
+</body>
+</html>
