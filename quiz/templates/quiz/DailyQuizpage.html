@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="./Quiz.css">
+<link rel="stylesheet" href="{% static 'quiz/DailyQuizpage/Quiz.css'%}">
 <title>OX Quiz</title>
 
 </head>
@@ -31,7 +32,7 @@
         </div>
         <div class="main-logo">
             <a href="#" target="_blank">
-              <img calss="logo-img" src="./image 3.jpg" alt="로고">
+              <img class="logo-img" src="{% static 'quiz/DailyQuizpage/logo.jpg'%}" alt="로고">
             </a>
         </div>
     </div>    
@@ -42,11 +43,13 @@
     <div class="example">문제를 읽고 맞으면 O, 틀리면 X를 입력해 주세요!</div>
   </div>
   <div class="quiz-container">
-    <div class="question">HTML은 웹 페이지의 구조를 정의하는 언어이다. (O / X)</div>
+    {% for quizzes in quizzes %}
+    <div class="question">{{ quizzes.content }}</div>
     <div class="answer-form">
       <button class="answer-button btn-true">O</button>
       <button class="answer-button btn-false">X</button>
     </div>
+    {% endfor %}
   </div>
   <div class="points">획득 포인트 : 0점</div> <!-- 포인트를 보여줄 요소 -->
   <div class="next-page">
@@ -67,7 +70,8 @@
   </div>
 </div>
 </div>
-<script type="text/javascript" src="./Quiz.js"></script>
+<script src="{% static 'quiz/DailyQuizpage/Quiz.js'%}"></script>
+
 
 </body>
 </html>
