@@ -1,13 +1,14 @@
 import json
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from .models import Quiz
+from .models import Quiz, User_Quiz
 import random
 
 def generate_quiz_list(quizzes, count):
     random_quizzes = random.sample(quizzes, count)
     return random_quizzes
 
+# 퀴즈 생성 후 반환
 def quiz_list(request):
     # 예시로 사용할 10개의 퀴즈와 정답 리스트
     quiz_data = [
@@ -47,45 +48,45 @@ def quiz_list(request):
         # 저장할 랜덤 퀴즈를 선택
         random_quizzes = generate_quiz_list(quiz_data, 3)
 
-        # 선택된 랜덤 퀴즈를 퀴즈 모델에 저장
-        quiz_dict = []
+        # 선택된 랜덤 퀴즈를 모델에 저장
+        quizzes = []
         for quiz_info in random_quizzes:
             quiz_instance = Quiz.objects.create(content=quiz_info["content"], answer=quiz_info["answer"], reference=quiz_info["reference"])
-            # quiz_instance.user_id.add(request.user)
+            quiz_instance.user_id.add(request.user)
 
-            # quiz_instance를 딕셔너리로 변환하여 JsonResponse로 반환
+            # quiz_instance를 딕셔너리로 변환
             quiz_json = {
                 "quiz_id":quiz_instance.quiz_id,
                 "content": quiz_instance.content,
                 "answer": quiz_instance.answer,
-                "reference": quiz_instance.reference
+                "reference": quiz_instance.reference,
             }
 
-            quiz_dict.append(quiz_json)
+            quizzes.append(quiz_json)
 
-        print(quiz_dict)
+        print(quizzes)
 
-        return JsonResponse({"quiz_dict": quiz_dict})
-        # return render(request, "quiz_list.html", context)
+        # return JsonResponse({"quizzes": quizzes})
+        return render(request, "quiz/quiz_list.html", {"quizzes": quizzes})
 
-
+# 사용자 답변 저장
 def update_answer(request, pk):
     user_quiz = get_object_or_404(Quiz, quiz_id=pk)
     if request.method == 'POST':
         payment_data = json.loads(request.body)
         user_quiz.result = payment_data['result'] # 프론트에서 사용자 답변을 result로 저장해야함
         user_quiz.save()
+
         print(user_quiz)
 
-        return JsonResponse("답변 저장 성공")
-        # return redirect('show_quiz')
+        # return JsonResponse("답변 저장 성공")
+        return redirect('show_quiz')
 
     
-# 오답노트에 보여줄 데이터들 보낼 때
+# 사용자가 틀린 퀴즈 추출
 def get_quiz(request):
     if request.method == 'GET':
-        user_quizzes = Quiz.objects.filter(answer=True)
-        # user_quiz = get_object_or_404(Quiz, user_id=request.user, answer=False)
+        user_quizzes = Quiz.objects.filter(user_id=request.user, result=True) 
         quiz_list = []
 
         for quiz in user_quizzes:
@@ -93,14 +94,75 @@ def get_quiz(request):
                 "quiz_id": quiz.quiz_id,
                 "content": quiz.content,
                 "answer": quiz.answer,
-                "reference": quiz.reference
+                "reference": quiz.reference,
             }
             quiz_list.append(quiz_dict)
 
         print(quiz_list)
 
-        return JsonResponse({"quiz_list": quiz_list})
-        # return render(request, "my_quiz.html", user_quiz) #프론트 오답페이지를 my_quiz.html로
+        # return JsonResponse({"quiz_list": quiz_list})
+        return render(request, "quiz/my_quiz.html", {"quiz_list": quiz_list}) #프론트 오답페이지를 my_quiz.html로
+    
+# 사용자가 만든 퀴즈 저장(POST)
+def post_uquiz(request):
+    if request.method == 'POST':
+        user_quiz = User_Quiz()
+        user_quiz.u_content = request.POST.get('content')
+        user_quiz.u_answer = request.POST.get('answer')
+        user_quiz.u_reference = request.POST.get('reference')
+        user_quiz.user_id.add(request.user)
+
+        user_quiz.save()
+
+        return redirect('my_quiz')
+    
+    return render(
+		request,
+		'quiz/user_quiz.html'
+	)
+
+# 전체 사용자 퀴즈 리스트 GET
+def user_quizzes(request):
+    uquiz_list = User_Quiz.objects.all()
+    return render (request, 'user_quiz_list.html', {'uquiz_list':uquiz_list})
+
+# 사용자가 만든 퀴즈 리스트 조회
+def my_quizzes(request):
+    my_quizzes = User_Quiz.objects.filter(user_id = request.user)
+    return render (request, 'myquiz.html', {'my_quizzes':my_quizzes})
+
+# 사용자 퀴즈 상세조회 GET
+def user_quiz(request, pk):
+    uquiz = get_object_or_404(User_Quiz, user_id = request.user, u_quiz_id=pk)
+    return render (request, 'user_quiz.html', {'uquiz':uquiz})
+
+# 사용자가 만든 퀴즈 수정
+def update_quiz(request, pk):
+    uquiz = get_object_or_404(User_Quiz, u_quiz_id=pk)
+    if request.method == 'POST':
+        uquiz.u_content = request.POST.get('content')
+        uquiz.u_answer = request.POST.get('answer')
+        uquiz.u_reference = request.POST.get('reference')
+
+        uquiz.save()
+
+        return redirect('my_quiz')
+    
+    return render(
+		request,
+		'quiz/update_quiz.html'
+	)
+
+
+# 사용자가 만든 퀴즈 삭제
+def delete_quiz(request, pk):
+    if request.method == 'POST':
+        uquiz = get_object_or_404(User_Quiz, u_quiz_id=pk)
+        uquiz.delete()
+        return redirect('my_quiz')
+
+
+
 
 
 
