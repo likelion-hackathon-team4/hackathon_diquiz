@@ -9,28 +9,17 @@ function loadQuizzes() {
       quizContainer.innerHTML = '';  // 기존 내용 지우기
 
       quizzes.forEach(quiz => {
-        const questionDiv = document.createElement('div');
-        questionDiv.classList.add('question');
+        const questionDiv = document.querySelector('question');
         questionDiv.textContent = quiz.content;
 
-        const answerFormDiv = document.createElement('div');
-        answerFormDiv.classList.add('answer-form');
+        const answerFormDiv = document.querySelector('answer-form');
         
-        const buttonTrue = document.createElement('button');
-        buttonTrue.classList.add('answer-button', 'btn-true');
-        buttonTrue.textContent = 'O';
+        const buttonTrue = document.querySelector('answer-button btn-true');
         buttonTrue.addEventListener('click', () => submitAnswer(quiz.quiz_id, true)); // 사용자 답변 전송
 
-        const buttonFalse = document.createElement('button');
-        buttonFalse.classList.add('answer-button', 'btn-false');
-        buttonFalse.textContent = 'X';
+        const buttonFalse = document.querySelector('answer-button btn-false');
         buttonFalse.addEventListener('click', () => submitAnswer(quiz.quiz_id, false)); // 사용자 답변 전송
         
-        answerFormDiv.appendChild(buttonTrue);
-        answerFormDiv.appendChild(buttonFalse);
-
-        quizContainer.appendChild(questionDiv);
-        quizContainer.appendChild(answerFormDiv);
       });
     })
     .catch(error => {
@@ -62,9 +51,24 @@ function submitAnswer(quizId, answer) {
   });
 }
 
-// 버튼 클릭 시 퀴즈 데이터 로드
-const loadButton = document.querySelector('.btn-load');
+function showHint(hintText) { // 힌트 보여주기 함수 
+  const hintDiv = document.querySelector('question');
+  hintDiv.textContent = hintText;
+  
+  // 일정 시간 후 힌트 제거
+  setTimeout(() => {
+    hintDiv.remove();
+  }, 3000); // 3초 후 힌트 제거
+}
+
+
+// 다시시작 버튼 클릭 시 퀴즈 데이터 로드
+const loadButton = document.querySelector('hint-button btn-reset');
 loadButton.addEventListener('click', loadQuizzes);
+
+// 힌트보기 버튼 
+const buttonHint = document.querySelector('hint-button btn-hint');
+buttonHint.addEventListener('click', () => showHint(quiz.reference)); // 힌트 보기 기능 호출
 
 // 초기 로딩 시 퀴즈 데이터 로드
 loadQuizzes();
