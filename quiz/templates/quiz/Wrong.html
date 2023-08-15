@@ -1,27 +1,23 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내가 틀린 문제</title>
-    <link rel="stylesheet" href="./Wrong.css">
+    <link rel="stylesheet" href="{% static 'quiz/DailyQuizpage/Wrong.css'%}">
 </head>
 <body>
     <h1>내가 틀린 문제</h1>
 
     <div class="quiz-container">
+        {% for quiz in my_quizzes %}
     <div class="question">
-        <p class="answer">문제: 1 + 1 = ?</p>
-        <p class="correct">정답: O</p>
-    </div>
-    <div class="question">
-        <p class="answer">문제: 대한민국의 수도는?</p>
-        <p class="correct">정답: X</p>
-    </div>
-    <div class="question">
-        <p class="answer">문제: HTML은 무엇의 약자인가?</p>
-        <p class="correct">정답: X</p>
+        <p class="content">{{ quiz.content }}</p>
+        <p class="correct">{{ quiz.answer }}</p>
     </div>
 </div>
+<script src="{% static 'quiz/DailyQuizpage/Wrong.js'%}"></script>
 </body>
+
 </html>
