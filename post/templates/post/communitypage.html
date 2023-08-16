@@ -1,200 +1,80 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
   <head>
-    {% load static %}
     <meta charset="utf-8" />
     <title>communitypage</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'post/css/communitypage.css' %}" >
   </head>
-  <body>
-    <div>
-      <div class="navbar fixed-top d-flex justify-content-center">
-        <!--main logo-->
-        <div class="logo">
-          <a href="./index.html">
-            <img src="./img/mainlogo.png" alt="로고" />
-          </a>
-        </div>
-        <!--hamburger nav-->
-        <div class="hamburger-menu context">
-          <input id="menu__toggle" type="checkbox" class="checkbox" />
-          <label class="menu__btn" for="menu__toggle">
-            <span></span>
-          </label>
-          <nav class="menu__box">
-            <ul class="menu__list context">
-              <div class="menu__all"></div>
-              <!-- <a href="#my2"><div class="profile"><img src="./img/KakaoTalk_20230502_164507254.jpg" alt="프로필이미지"></div></a> -->
-              <p class="mine">
-                <b>노은아<br />My Point</b>
-              </p>
-              <li><a class="menu__item" href="#my2">프로필</a></li>
-              <li><a class="menu__item" href="#my3">내가 만든 문제</a></li>
-              <li><a class="menu__item" href="#">오답노트</a></li>
-              <li><a class="menu__item" href="#">내 포인트관리</a></li>
-              <li><a class="logoutbtn" href="./sh.html">로그아웃</a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-    <div
-      class="display-container d-flex justify-content-center align-items-center context"
-    >
-      <div class="communitynav">
-        <div
-          class="card-body justify-content-center align-items-center py-2 px-md-1"
-        >
-          <!-- login & register nav bar -->
-          <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-            <li class="nav-item mx-2" role="presentation">
-              <a
-                class="nav-link"
-                id="tab-login"
-                data-mdb-toggle="pill"
-                href="./communitypage.html"
-                role="tab"
-                aria-controls="pills-login"
-                aria-selected="true"
-                >커뮤니티</a
-              >
-            </li>
-            <li class="nav-item mx-2" role="presentation">
-              <a
-                class="nav-link active"
-                id="tab-register"
-                data-mdb-toggle="pill"
-                href="./bulletinboard.html"
-                role="tab"
-                aria-controls="pills-register"
-                aria-selected="false"
-                >게시판</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div
-      class="display-container d-flex justify-content-center align-items-center"
-    >
-      <div
-        class="context d-flex justify-content-center"
-        style="position: absolute; top: 2px"
-      >
-        <div class="part4 py-5 my-5">
-          <form action="">
-            <div class="inputbox d-flex justify-content-center py-1 my-5">
-              <input
-                class="bootsearch"
-                type="text"
-                id="bootsearch"
-                placeholder="게시판의 글을 검색해보세요!"
-              />
+  <body class="context">
+    <nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><img src="./img/mainlogo.png" alt="main-logo" style="width: 40px; height:40px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 context">
+                    <li class="nav-item">
+                        <a class="nav-link"  href="#">마이페이지</a>
+                    </li>    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">내가 만든 문제</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">오답노트</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">내 포인트 관리</a>
+                    </li>
+                    <li class="nav-item"></li>
+                        <a class="nav-link" href="#">로그아웃</a>
+                    </li>
+                </ul>
             </div>
-          </form>
         </div>
-      </div>
+    </nav>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong style>게시판 목록</strong>
+        </div>
+        <div class="board_list_wrap">
+            <div class="board_list">
+                <div class="top">
+                    <div class="title">제목</div>
+                    <div class="writer">글쓴이</div>
+                    <div class="date">작성일</div>
+                    <div class="count">조회</div>
+                </div>
+                {% for board_list in boards %} 
+                <div class="my-3">
+                    <div class="title"><a href="{% board/<int:board_id> %}">{{ board.title }}</a></div>
+                    <div class="writer">{{ board.author }}</div>
+                    <div class="date">{{ board.created_at }}</div>
+                    <div class="count">{{ board.views }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            <!--div class="board_page">
+                <a href="#" class="bt first"><<</a>
+                <a href="#" class="bt prev"><</a>
+                <a href="#" class="num on">1</a>
+                <a href="#" class="num">2</a>
+                <a href="#" class="num">3</a>
+                <a href="#" class="num">4</a>
+                <a href="#" class="num">5</a>
+                <a href="#" class="bt next">></a>
+                <a href="#" class="bt last">>></a>
+            </div-->
+            <div class="bt_wrap">
+                <a href="{% url 'create_board' %}" class="on">등록</a>
+            </div>
+        </div>
     </div>
-
-    <div
-      style="
-        position: absolute;
-        top: 180px;
-        left: 520px;
-        width: 800px;
-        padding: 5px;
-      "
-    >
-      <div
-        style="
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          border-top: 2px solid #949090;
-        "
-      >
-        <div style="padding-bottom: 5px; position: relative; left: 45px">
-          <span>제목</span>
-        </div>
-        <div style="padding-bottom: 5px; position: relative; left: 27px">
-          <span>작성자</span>
-        </div>
-        <div style="padding-bottom: 5px; position: relative; left: 15px">
-          <span>날짜</span>
-        </div>
-        <div style="padding-bottom: 5px; position: relative; right: 10px">
-          <span>조회수</span>
-        </div>
-      </div>
-    </div>
-    <div
-      style="
-        position: absolute;
-        left: 520px;
-        top: 210px;
-        width: 500px;
-        flex-direction: column;
-      "
-    >
-      <div id="list" class="contents"></div>
-    </div>
-
-    <script>
-      const data = [
-        {
-          제목: "글 제목 1",
-          작성자: "작성자 1",
-          날짜: "2023-08-14",
-          조회수: 10,
-        },
-        {
-          제목: "글 제목 2",
-          작성자: "작성자 2",
-          날짜: "2023-08-15",
-          조회수: 20,
-        },
-        {
-          제목: "글 제목 3",
-          작성자: "작성자 3",
-          날짜: "2023-08-16",
-          조회수: 30,
-        },
-        {
-          제목: "글 제목 4",
-          작성자: "작성자 4",
-          날짜: "2023-08-17",
-          조회수: 40,
-        },
-        {
-          제목: "글 제목 5",
-          작성자: "작성자 5",
-          날짜: "2023-08-18",
-          조회수: 50,
-        },
-      ];
-      const listElement = document.getElementById("list");
-
-      data.forEach((item) => {
-        const listItem = document.createElement("div");
-        listItem.classList.add("list");
-        listItem.style.borderTop = "1px solid #CCCCCC";
-        listItem.style.borderBottom = "1px solid #CCCCCC";
-        listItem.style.paddingBottom = "5px";
-        listItem.style.paddingTop = "5px";
-        listItem.style.display = "flex";
-        listItem.style.justifyContent = "space-around";
-
-        Object.keys(item).forEach((key) => {
-          const spanElement = document.createElement("span");
-          spanElement.textContent = item[key];
-          listItem.appendChild(spanElement);
-        });
-
-        listElement.appendChild(listItem);
-      });
-    </script>
-  </body>
+</body>
 </html>
