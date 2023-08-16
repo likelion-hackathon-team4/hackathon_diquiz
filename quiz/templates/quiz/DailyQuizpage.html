@@ -42,15 +42,9 @@
 <div class="example-container">
     <div class="example">문제를 읽고 맞으면 O, 틀리면 X를 입력해 주세요!</div>
   </div>
-  <div class="quiz-container">
-    {% for quiz in quizzes %}
-    <div class="question">{{ quiz.content }}</div>
-    <div class="answer-form">
-      <button class="answer-button btn-true">O</button>
-      <button class="answer-button btn-false">X</button>
-    </div>
-    {% endfor %}
+  <div class="quiz-container">    
   </div>
+
   <div class="points">획득 포인트 : 0점</div> <!-- 포인트를 보여줄 요소 -->
   <div class="next-page">
   </div>

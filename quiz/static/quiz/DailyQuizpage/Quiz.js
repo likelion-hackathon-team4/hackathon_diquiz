@@ -1,22 +1,48 @@
+function getCookie(name) {
+  let cookie = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+  return cookie ? cookie[2] : null;
+}
+
 // 퀴즈 데이터를 백엔드에서 가져와서 화면에 표시하는 함수
 function loadQuizzes() {
-  fetch('"quiz/" (random_quiz)')  // 백엔드에 퀴즈 데이터 요청 , 명세서 URL로 설정 
+  fetch('/quiz/')  // 백엔드에 퀴즈 데이터 요청 , 명세서 URL로 설정 
     .then(response => response.json())  // 응답을 JSON 형식으로 변환
     .then(data => {
-      const quizzes = [data];  // 받아온 퀴즈 데이터 목록
+      const quizzes =data.quizzes;  // 받아온 퀴즈 데이터 목록
 
       const quizContainer = document.querySelector('.quiz-container');
       quizContainer.innerHTML = '';  // 기존 내용 지우기
 
       quizzes.forEach(quiz => {
-        const questionDiv = document.querySelector('question');
+        const questionDiv = document.createElement('div');
+        questionDiv.classList.add('question');
+
         questionDiv.textContent = quiz.content;
+<<<<<<< HEAD
+=======
+
+        quizContainer.appendChild(questionDiv);
+                
+        const answerFormDiv = document.createElement('div');
+        quizContainer.appendChild(answerFormDiv);
+
+>>>>>>> main
         
-        const buttonTrue = document.querySelector('answer-button btn-true');
+        const buttonTrue = document.createElement('button');
+        buttonTrue.classList.add('answer-button');
+        buttonTrue.classList.add('btn-true');
+        buttonTrue.textContent = 'O';
+
         buttonTrue.addEventListener('click', () => submitAnswer(quiz.quiz_id, true)); // 사용자 답변 전송
 
-        const buttonFalse = document.querySelector('answer-button btn-false');
+        answerFormDiv.appendChild(buttonTrue)
+
+        const buttonFalse = document.createElement('button');
+        buttonFalse.classList.add('answer-button');
+        buttonFalse.classList.add('btn-false');
+        buttonFalse.textContent = 'X';
         buttonFalse.addEventListener('click', () => submitAnswer(quiz.quiz_id, false)); // 사용자 답변 전송
+        answerFormDiv.appendChild(buttonFalse)
         
       });
     })
@@ -32,10 +58,13 @@ function submitAnswer(quizId, answer) {
     user_answer: answer
   };
 
-  fetch('"quiz/" (random_quiz)', { // 명세서 URL로 설정 
+  url = `/quiz/${encodeURIComponent(quizId)}/`;
+
+  fetch(url, { // 명세서 URL로 설정 
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      "X-CSRFToken": getCookie("csrftoken"),
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(data)
   })
@@ -70,12 +99,13 @@ function showPointsEarned() {
   quizContainer.appendChild(pointsDiv);
 }
 // 다시시작 버튼 클릭 시 퀴즈 데이터 로드
-const loadButton = document.querySelector('hint-button btn-reset');
+const loadButton = document.querySelector('.btn-reset');
 loadButton.addEventListener('click', loadQuizzes);
 
 // 힌트보기 버튼 
-const buttonHint = document.querySelector('hint-button btn-hint');
+const buttonHint = document.querySelector('.btn-hint');
 buttonHint.addEventListener('click', () => showHint(quiz.reference)); // 힌트 보기 기능 호출
 
 // 초기 로딩 시 퀴즈 데이터 로드
 loadQuizzes();
+
