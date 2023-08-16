@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디테일 게시판</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'post/css/communitypage.css' %}">
+</head>
+<body class="context">
+    <nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><img src="./img/mainlogo.png" alt="main-logo" style="width: 40px; height:40px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 context">
+                    <li class="nav-item">
+                        <a class="nav-link"  href="#">마이페이지</a>
+                    </li>    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">내가 만든 문제</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">오답노트</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">내 포인트 관리</a>
+                    </li>
+                    <li class="nav-item"></li>
+                        <a class="nav-link" href="#">로그아웃</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>커뮤니티</strong>
+        </div>
+        <div class="board_view_wrap">
+            <div class="board_view">
+                <div class="title">
+                    {{ board.title }}
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd>{{ board.author }}</dd>
+                    </dl>
+                    <dl>
+                        <dt>작성일</dt>
+                        <dd>{{ board.created_at }}</dd>
+                    </dl>
+                    <dl>
+                        <dt>조회</dt>
+                        <dd>{{ board.views }}</dd>
+                    </dl>
+                </div>
+                <div class="cont">
+                    {{ board.content }}<br><br><br> <div class="like" id = '#like_section'>
+                        {% if user.is_authenticated %}
+                        <form action = "{% url 'like_board' board_id=board.id %}" method = "post">
+                            {% csrf_token %}
+                            {% if know_like %}
+                                <button type = "submit" class = "btn btn-secondary" id = "like" name = "post_id" value = "{{post.id}}">좋아요 취소</button>
+                            {% else %}
+                            <button type = "submit" class = "btn btn-primary" id = "like" name = "post_id" value = "{{post.id}}">좋아요</button>
+                            {% endif %}
+                        </form>
+                        {% endif %}
+                        <br>
+                    
+                    </div><br>
+                </div>
+                
+            </div>
+            <div>
+                <form class="my-4" action="#" method="post" action="/reply/write">
+                    <div>
+
+                    </div>
+                    <p>
+                        <div class="comment" name="content"></div>
+                    </p>
+                    <div class="submit-button">
+                        <p>
+                            <button type="submit" class="py-2 px-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                              </svg></button>
+                        </p>
+                    </div>
+                </form>
+                
+            </div>
+            <div class="bt_wrap">
+                <a href="{% url 'board_list' %}" class="on">목록</a>
+                {% if user.is_authenticated and board.author.id == user.id %}
+                <a href="{% url 'edit_board' board_id=board.id %}">수정</a> 
+                <a href="{% url 'delete_board' board_id=board.id %}">삭제</a>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

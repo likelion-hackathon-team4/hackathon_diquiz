@@ -23,12 +23,12 @@ urlpatterns = [
     
     path('board', views.board_list, name='board_list'),  # 게시물 목록 페이지(썸넬)
     path('board/<int:board_id>/', views.board_detail, name='board_detail'),  # 게시물 상세 페이지 (클릭한 해당된 게시물 페이지)
-    path('board/<int:board_id>/add_comment/', views.add_comment, name='add_comment'),  # 댓글 추가 board/add_comment/<int:board_id>
-    path('board/<int:board_id>/like/', views.like_board, name='like_board'),  # 게시물 좋아요
-    path('comment/<int:comment_id>/like/', views.like_comment, name='like_comment'),  # 댓글 좋아요
+    path('board/add_comment/<int:board_id>', views.add_comment, name='add_comment'),  # 댓글 추가 board/add_comment/<int:board_id>
+    path('board/like/<int:board_id>', views.like_board, name='like_board'),  # 게시물 좋아요
+    path('comment/like/<int:comment_id>', views.like_comment, name='like_comment'),  # 댓글 좋아요
     path('board/create/', views.create_board, name='create_board'), # 이미지 업로드
-    path('board/<int:board_id>/edit/', views.edit_board, name='edit_board'),  # 게시물 수정
-    path('board/<int:board_id>/delete/', views.delete_board, name='delete_board'),  # 게시물 삭제
+    path('board/edit/<int:board_id>', views.edit_board, name='edit_board'),  # 게시물 수정
+    path('board/delete/<int:board_id>', views.delete_board, name='delete_board'),  # 게시물 삭제
 ]
 
 # 데이터를 프론트로 보내기 (내용들)
