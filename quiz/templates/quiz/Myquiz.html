@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User quiz</title>
+    <link rel="stylesheet" href="{% static 'quiz/DailyQuizpage/Myquiz.css'%}">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav">
+            <div class="page-name">
+                <div class="my-quiz">퀴즈 풀기</div>
+            </div>  
+            <div class="hamburger-menu">
+                <input id="menu__toggle" type="checkbox" class="checkbox" />
+                <label class="menu__btn" for="menu__toggle">
+                    <span></span>
+                </label>
+                <nav class="menu__box">
+                    <ul class="menu__list">
+                        <div class="menu__all"></div>
+                            <a href="#"><div class="profile"><img src="{% static 'quiz/DailyQyizpage/profile.jpg'%}" alt="프로필이미지"></div></a>
+                            <p class="mine"><b>노은아<br>My Point</b></p>
+                            <li><a class="menu__item" href="#my2">프로필</a></li>
+                            <li><a class="menu__item" href="#">오답노트</a></li>
+                            <li><a class="menu__item" href="#">내 포인트관리</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="main-logo">
+                <a href="#" target="_blank">
+                  <img calss="logo-img" src="./image 3.jpg" alt="로고">
+                </a>
+            </div>
+        </div>    
+    </nav>
+    <div class="wrap">
+        <div class="wrap-section">
+            <div class="quiz-container">
+                <h2>퀴즈 풀기</h2>
+                <div class="question">
+                    <p class="question-p" id="quiz-question"></p>
+                </div>
+                <div class="answer">
+                    <p class="question-a">답안을 선택해주세요 (O 또는 X)</p>
+                    <div class="answer-options">
+                        <label class="radioBtn">
+                            <input type="radio" name="answer" value="O" />
+                            <span>O</span>
+                        </label>
+                        <label class="radioBtn">
+                            <input type="radio" name="answer" value="X" />
+                            <span>X</span>
+                        </label>
+                    </div>
+                </div>
+                <button class="submit-answer-button">답안 제출</button>
+                <p class="result-text" id="quiz-result"></p>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'quiz/DailyQuizpage/Quiz.js'%}"></script>
+</body>
+</html>

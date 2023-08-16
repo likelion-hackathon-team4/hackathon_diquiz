@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+  }
+  h1 {
+    color: #333;
+  }
+  .quiz-container {
+    margin: auto;
+    max-width: 500px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  .question {
+    margin-bottom: 10px;
+  }
+  .answer {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .correct {
+    color: green;
+  }

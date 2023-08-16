@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>communitypage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'post/css/communitypage.css' %}" >
+  </head>
+  <body class="context">
+    <nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><img src="./img/mainlogo.png" alt="main-logo" style="width: 40px; height:40px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 context">
+                    <li class="nav-item">
+                        <a class="nav-link"  href="#">마이페이지</a>
+                    </li>    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">내가 만든 문제</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">오답노트</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">내 포인트 관리</a>
+                    </li>
+                    <li class="nav-item"></li>
+                        <a class="nav-link" href="#">로그아웃</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong style>게시판 목록</strong>
+        </div>
+        <div class="board_list_wrap">
+            <div class="board_list">
+                <div class="top">
+                    <div class="title">제목</div>
+                    <div class="writer">글쓴이</div>
+                    <div class="date">작성일</div>
+                    <div class="count">조회</div>
+                </div>
+                {% for board_list in boards %} 
+                <div class="my-3">
+                    <div class="title"><a href="{% board/<int:board_id> %}">{{ board.title }}</a></div>
+                    <div class="writer">{{ board.author }}</div>
+                    <div class="date">{{ board.created_at }}</div>
+                    <div class="count">{{ board.views }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            <!--div class="board_page">
+                <a href="#" class="bt first"><<</a>
+                <a href="#" class="bt prev"><</a>
+                <a href="#" class="num on">1</a>
+                <a href="#" class="num">2</a>
+                <a href="#" class="num">3</a>
+                <a href="#" class="num">4</a>
+                <a href="#" class="num">5</a>
+                <a href="#" class="bt next">></a>
+                <a href="#" class="bt last">>></a>
+            </div-->
+            <div class="bt_wrap">
+                <a href="{% url 'create_board' %}" class="on">등록</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

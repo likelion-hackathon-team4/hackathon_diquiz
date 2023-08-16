@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'quiz/DailyQuizpage/Quiz.css'%}">
+<title>OX Quiz</title>
+
+</head>
+<body>
+  <nav class="nav-bar">
+    <div class="nav">
+      <div class="page-name">
+        <div class="my-quiz"> Daily Quiz </div>
+      </div>  
+        <div class="hamburger-menu">
+            <input id="menu__toggle" type="checkbox" />
+            <label class="menu__btn" for="menu__toggle">
+                <span></span>
+            </label>
+
+            <ul class="profile">
+
+            </ul>
+            <ul class="menu__box">
+                <li><a class="menu__item" href="#">프로필</a></li>
+                <li><a class="menu__item" href="#">내가 만든 문제</a></li>
+                <li><a class="menu__item" href="#">오답노트</a></li>
+                <li><a class="menu__item" href="#">내 포인트관리</a></li>
+            </ul>
+        </div>
+        <div class="main-logo">
+            <a href="#" target="_blank">
+              <img class="logo-img" src="{% static 'quiz/DailyQuizpage/logo.jpg'%}" alt="로고">
+            </a>
+        </div>
+    </div>    
+</nav>
+<div class="wrap">
+<div class="wrap-section">
+<div class="example-container">
+    <div class="example">문제를 읽고 맞으면 O, 틀리면 X를 입력해 주세요!</div>
+  </div>
+  <div class="quiz-container">    
+  </div>
+
+  <div class="points">획득 포인트 : 0점</div> <!-- 포인트를 보여줄 요소 -->
+  <div class="next-page">
+  </div>
+  <div class="btn-section">
+    <div class="btn-tooltip">
+      <button class="hint-button btn-hint">힌트보기</button>
+      <span class="tooltip">힌트를 3초동안 보여줍니다!</span>
+    </div>
+    <div class="btn-tooltip">
+      <button class="hint-button btn-next">다른문제</button>
+      <span class="tooltip">다른 문제를 풀 수 있습니다.</span>
+    </div>
+    <div class="btn-tooltip">
+      <button class="hint-button btn-reset">다시시작</button>
+      <span class="tooltip">퀴즈를 다시 시작합니다.</span>
+    </div>
+  </div>
+</div>
+</div>
+<script src="{% static 'quiz/DailyQuizpage/Quiz.js'%}"></script>
+
+
+</body>
+</html>
