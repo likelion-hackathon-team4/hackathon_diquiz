@@ -51,9 +51,9 @@
                     <div class="date">작성일</div>
                     <div class="count">조회</div>
                 </div>
-                {% for board_list in boards %} 
+                {% for board in boards %} 
                 <div class="my-3">
-                    <div class="title"><a href="{% board/<int:board_id> %}">{{ board.title }}</a></div>
+                    <div class="title"><a href="{% url 'board_detail' board_id=board.id %}">{{ board.title }}</a></div>
                     <div class="writer">{{ board.author }}</div>
                     <div class="date">{{ board.created_at }}</div>
                     <div class="count">{{ board.views }}</div>

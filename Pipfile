@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 asgiref = "==3.7.2"
 django = "==3.2.20"
+pillow = "==10.0.0"
 pytz = "==2023.3"
 sqlparse = "==0.4.4"
 typing-extensions = "==4.7.1"
