@@ -11,8 +11,6 @@ function loadQuizzes() {
       quizzes.forEach(quiz => {
         const questionDiv = document.querySelector('question');
         questionDiv.textContent = quiz.content;
-
-        const answerFormDiv = document.querySelector('answer-form');
         
         const buttonTrue = document.querySelector('answer-button btn-true');
         buttonTrue.addEventListener('click', () => submitAnswer(quiz.quiz_id, true)); // 사용자 답변 전송
@@ -45,6 +43,10 @@ function submitAnswer(quizId, answer) {
   .then(data => {
     // 서버 응답 처리
     console.log(data);
+
+    if (data.answer) {
+      showPointsEarned();
+    }
   })
   .catch(error => {
     console.error('답변 전송 오류:', error);
@@ -60,8 +62,13 @@ function showHint(hintText) { // 힌트 보여주기 함수
     hintDiv.remove();
   }, 3000); // 3초 후 힌트 제거
 }
-
-
+// 퀴즈 정답 판별후 맞으면 실행되는 함수 
+function showPointsEarned() {
+  const quizContainer = document.querySelector('.quiz-container');
+  const pointsDiv = document.createElement('div');
+  pointsDiv.textContent = "정답입니다! 10포인트가 적립되었습니다!";
+  quizContainer.appendChild(pointsDiv);
+}
 // 다시시작 버튼 클릭 시 퀴즈 데이터 로드
 const loadButton = document.querySelector('hint-button btn-reset');
 loadButton.addEventListener('click', loadQuizzes);
