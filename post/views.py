@@ -7,7 +7,7 @@ from .forms import BoardForm
 
 def board_list(request):
     boards = Board.objects.all() # 모든 게시물 조회
-    print(boards)
+    # print(boards)
     return render(request, 'post/communitypage.html', {'boards': boards})
 
 def board_detail(request, board_id):
@@ -15,7 +15,8 @@ def board_detail(request, board_id):
     board.views += 1 # 조회수 증가
     board.save()
     know_like = board.likes.filter(id=request.user.id).exists()
-    return render(request, 'post/view.html', {'board': board,'know_like': know_like, })
+    comments = Comment.objects.filter(board=board)
+    return render(request, 'post/view.html', {'board': board,'know_like': know_like, 'comments':comments})
  
 
 @login_required # 로그인한 사용자만 접근할 수 있는 뷰입니다.
