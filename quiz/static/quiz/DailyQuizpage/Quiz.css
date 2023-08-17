@@ -1,7 +1,13 @@
 @font-face {
-  font-family: 'KBO-Dia-Gothic_bold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff') format('woff');
+  font-family: 'TheJamsil5Bold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
   font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GongGothicMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+  font-weight: normal;
   font-style: normal;
 }
 body {
@@ -10,100 +16,9 @@ body {
   color: white;
   
 }
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.page-name {
-  display: inline-block;
-  padding-left: 63px;
-  padding-bottom: 87px;
-}
-#menu__toggle {
-  opacity: 0;
-}
-#menu__toggle:checked + .menu__btn > span {
-  transform: rotate(45deg);
-}
-#menu__toggle:checked + .menu__btn > span::before {
-  top: 0;
-  transform: rotate(0deg);
-}
-#menu__toggle:checked + .menu__btn > span::after {
-  top: 0;
-  transform: rotate(90deg);
-}
-#menu__toggle:checked ~ .menu__box {
-  left: 0 !important;
-}
-.menu__btn {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 26px;
-  height: 26px;
-  cursor: pointer;
-  z-index: 1;
-}
-.menu__btn > span,
-.menu__btn > span::before,
-.menu__btn > span::after {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background-color: black;
-  transition-duration: .25s;
-}
-.menu__btn > span::before {
-  content: '';
-  top: -8px;
-}
-.menu__btn > span::after {
-  content: '';
-  top: 8px;
-}
-.menu__box {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: -100%;
-  width: 500px;
-  height: 100%;
-  margin: 0;
-  padding: 80px 0;
-  list-style: none;
-  background-color: #B7E7C2;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
-  transition-duration: .25s;
-}
-.menu__item {
-  display: block;
-  padding: 12px 24px;
-  color: #333;
-  right: 20%;
-  font-family: 'Roboto', sans-serif;
-  margin-right: 50%;
-  font-weight: 600;
-  text-decoration: none;
-  transition-duration: .25s;
-}
-.menu__item:hover {
-  background-color: #CFD8DC;
-}
-
-.main-logo {
-  text-align: right;
-  flex: 1;
-  margin-right: 20px;
-}
-.img {
-  max-width: 35px;
-}
   .wrap {
     text-align: center;
-    background-color: #58AB6B;
+    background-color: #daeafb;
   }
   .wrap-section {
     width: 1500px;
@@ -117,6 +32,7 @@ body {
   .question {
     font-size: 24px;
     margin-bottom: 20px;
+    font-family: 'GongGothicMedium';
   }
   .answer-form {
     display: flex;
@@ -130,13 +46,12 @@ body {
     cursor: pointer;
   }
   .btn-true {
-    background-color: #5cb85c;
+    background-color: #3969e3;
     color: white;
     border-radius: 25px;
     border: none;
     font-size: 100px;
     padding: 50px;
-    
   }
   .btn-false {
     background-color: #d9534f;
@@ -146,19 +61,42 @@ body {
     font-size: 100px;
     padding: 50px;
   }
+    /* 버튼 스타일링 */
+    .next-button {
+      background-color: #7f76e3;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    .answerForm {
+      display: flex;
+      justify-content: space-evenly;
+    }
+    .result {
+      font-size: 20px;
+      font-family: 'TheJamsil5';
+      margin-top: 38px;
+    }
   .example-container {
     text-align: center;
     padding: 40px;
   }
   .example {
     font-size: 25px;
-    font-family: 'KBO-Dia-Gothic_bold';
-    color: white;
+    font-family: 'TheJamsil5Bold';
   }
   .points {
     font-size: 25px;
+    font-family: 'GongGothicMedium';
   }
-  
+  .end-message {
+    font-size: 25px;
+    font-family: 'TheJamsil5';
+  }
   .next-page {
     font-size: 25px;
     padding-top: 100px;
@@ -169,21 +107,11 @@ body {
     justify-content: flex-end; /* 내부 요소를 오른쪽으로 정렬 */
     margin-right: 50px;
   }
-  .btn-hint {
-    border-radius: 20px;
-    border: none;
-    padding: 15px;
-    background-color: skyblue;
-    color: white;
-    margin-right: 20px;
-    font-size: 20px;
-    cursor: pointer;
-  }
   .btn-next {
     border-radius: 20px;
     border: none;
     padding: 15px;
-    background-color: skyblue;
+    background-color: #7f76e3;
     color: white;
     font-size: 20px;
     cursor: pointer;
@@ -192,23 +120,23 @@ body {
       border-radius: 20px;
       border: none;
       padding: 15px;
-      background-color: skyblue;
-      color: red;
+      background-color: #7f76e3;
+      color: white;
       font-size: 20px;
       cursor: pointer;
       margin-left: 20px;
     }
-  .btn-hint:hover {
-    color: white;
-    background-color: green;
-  }
   .btn-next:hover {
     color: white;
-    background-color: green;
+    background-color: rgb(108, 160, 40);
   }
   .btn-reset:hover {
     color: white;
-    background-color: green;
+    background-color: rgb(108, 160, 40);
+  }
+  .next-button:hover {
+    color: white;
+    background-color: rgb(108, 160, 40);
   }
       /* 버튼에 대한 설명문 스타일 */
   .btn-tooltip {
