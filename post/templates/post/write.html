@@ -14,7 +14,7 @@
 <body class="context">
     <nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/"><img src="./img/mainlogo.png" alt="main-logo" style="width: 40px; height:40px;"></a>
+            <a class="navbar-brand" href="/"><img src="{% static 'post/source/img/mainlogo.png' %}" alt="main-logo" style="width: 40px; height:40px;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -45,7 +45,7 @@
             <strong>게시물 작성</strong>
             <p>게시물을 작성해주세요.</p>
         </div>
-        <form method="post"> 
+        <form method="post" enctype="multipart/form-data"> 
             {%csrf_token%}
             <div class="board_write_wrap">
                 <div class="board_write">
@@ -61,7 +61,7 @@
                             <dd>{{user.username}}</dd>
                         </dl>
                         <dl>
-                            <dt><input type="file" name="SelectFile" /></dt>`
+                            <dt><input type="file" name="photo" /></dt>
                         </dl>
                     </div>
                     <div class="cont">
@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="bt_wrap">
-                <a><input type='submit' class="on" value="등록"> </a>
+                <a><input type='submit' class="on" value="등록"></a>
                 <a href="{% url 'board_list' %}">취소</a>
                 {% comment %} <a href="{% url 'delete_board' %}" class="delete">삭제</a> {% endcomment %}
             </div>
