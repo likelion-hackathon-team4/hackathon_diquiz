@@ -14,7 +14,7 @@
 <body class="context">
     <nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/"><img src="./img/mainlogo.png" alt="main-logo" style="width: 40px; height:40px;"></a>
+            <a class="navbar-brand" href="/"><img src="{% static 'post/source/img/mainlogo.png' %}" alt="main-logo" style="width: 40px; height:40px;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -62,9 +62,14 @@
                         <dt>조회</dt>
                         <dd>{{ board.views }}</dd>
                     </dl>
+                    <dl>
+                        <dt>좋아요</dt>
+                        <dd>{{ board.likes }}</dd>
+                    </dl>
                 </div>
                 <div class="cont">
-                    {{ board.content }}<br><br><br> <div class="like" id = '#like_section'>
+                    <div>
+                        <img src="{{ board.photo.url }}"><br> {{ board.content }}<br><br><br> <div class="like" id = '#like_section'>
                         {% if user.is_authenticated %}
                         <form action = "{% url 'like_board' board_id=board.id %}" method = "post">
                             {% csrf_token %}
@@ -81,24 +86,28 @@
                 </div>
                 
             </div>
-            <div>
-                <form class="my-4" action="#" method="post" action="/reply/write">
-                    <div>
-
-                    </div>
-                    <p>
-                        <div class="comment" name="content"></div>
-                    </p>
-                    <div class="submit-button">
-                        <p>
-                            <button type="submit" class="py-2 px-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
-                                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
-                              </svg></button>
-                        </p>
-                    </div>
-                </form>
-                
+            <!--for문으로 대체.-->
+            <div class="dda my-3" style="border: 1px solid; padding: 15px;">
+                <!--댓글작성자 자리-->
+                <p><!--댓글 내용 자리--></p>
             </div>
+            <!--여기까지 for문-->
+            <form method="post" id="commentForm">
+                <div class="my-3">
+                    <p>
+                        <div class="comment" name="content">
+                            <input class="dda-content py-2" type="text" id="commentInput" placeholder="댓글 내용을 입력하세요~!" style="width:150px">
+                        </div>
+                    </p>
+                    <p>
+                        <button type="submit" class="py-2 px-2" id="addCommentButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                            </svg>
+                        </button>
+                    </p>
+                </div>
+            </form>
             <div class="bt_wrap">
                 <a href="{% url 'board_list' %}" class="on">목록</a>
                 {% if user.is_authenticated and board.author.id == user.id %}

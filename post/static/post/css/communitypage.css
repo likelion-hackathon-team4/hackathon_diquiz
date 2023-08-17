@@ -397,3 +397,14 @@ a {
       width: 100%;
   }
 }
+
+.dda {
+  border: 3px black solid;
+  background-color: white;
+}
+
+
+.dda-content {
+  text-align: center;
+
+}

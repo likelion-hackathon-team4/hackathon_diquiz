@@ -21,7 +21,7 @@ from post import views
 
 urlpatterns = [
     
-    path('board', views.board_list, name='board_list'),  # 게시물 목록 페이지(썸넬)
+    path('board/', views.board_list, name='board_list'),  # 게시물 목록 페이지(썸넬)
     path('board/<int:board_id>/', views.board_detail, name='board_detail'),  # 게시물 상세 페이지 (클릭한 해당된 게시물 페이지)
     path('board/add_comment/<int:board_id>', views.add_comment, name='add_comment'),  # 댓글 추가 board/add_comment/<int:board_id>
     path('board/like/<int:board_id>', views.like_board, name='like_board'),  # 게시물 좋아요
