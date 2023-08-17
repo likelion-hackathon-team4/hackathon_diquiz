@@ -8,10 +8,11 @@ def generate_quiz_list(quizzes, count):
     random_quizzes = random.sample(quizzes, count)
     return random_quizzes
 
+# 퀴즈 페이지 보여줌
 def show_page(request):
     return render(request, "quiz/DailyQuizpage.html")
 
-# 퀴즈 생성 후 반환
+# 퀴즈 데이터 넘겨줌
 def quiz_list(request):
     # 예시로 사용할 10개의 퀴즈와 정답 리스트
     quiz_data = [
@@ -55,7 +56,7 @@ def quiz_list(request):
         quizzes = []
         for quiz_info in random_quizzes:
             quiz_instance = Quiz.objects.create(content=quiz_info["content"], answer=quiz_info["answer"], reference=quiz_info["reference"])
-            # quiz_instance.user_id.add(request.user)
+            quiz_instance.user_id.add(request.user)
 
             # quiz_instance를 딕셔너리로 변환
             quiz_json = {
@@ -80,9 +81,6 @@ def update_answer(request, pk):
         payment_data = json.loads(request.body)
         ans = payment_data['user_answer']
 
-        print(ans)
-        print(user_quiz.answer)
-
         if(user_quiz.answer == ans):
             user_quiz.result=True
 
@@ -99,8 +97,8 @@ def update_answer(request, pk):
 # 사용자가 틀린 퀴즈 추출
 def get_quiz(request):
     if request.method == 'GET':
-        # user_quizzes = Quiz.objects.filter(user_id=request.user, result=True) 
-        user_quizzes = Quiz.objects.filter(result=True) 
+        user_quizzes = Quiz.objects.filter(user_id=request.user, result=True) 
+        # user_quizzes = Quiz.objects.filter(result=True) 
         quiz_list = []
 
         for quiz in user_quizzes:
@@ -121,10 +119,10 @@ def get_quiz(request):
 def post_uquiz(request):
     if request.method == 'POST':
         user_quiz = User_Quiz()
-        user_quiz.u_content = request.POST.get('content')
+        user_quiz.u_content = request.POST.get('title')
         user_quiz.u_answer = request.POST.get('answer')
-        user_quiz.u_reference = request.POST.get('reference')
-        # user_quiz.user_id.add(request.user)
+        # user_quiz.u_reference = request.POST.get('reference')
+        user_quiz.user_id.add(request.user)
 
         user_quiz.save()
 
@@ -132,23 +130,23 @@ def post_uquiz(request):
     
     return render(
 		request,
-		'quiz/user_quiz.html'
+		'quiz/Myquiz.html'
 	)
 
-# # 전체 사용자 퀴즈 리스트 GET
-# def user_quizzes(request):
-#     uquiz_list = User_Quiz.objects.all()
-#     return render (request, 'user_quiz_list.html', {'uquiz_list':uquiz_list})
+# 전체 사용자 퀴즈 리스트 GET
+def user_quizzes(request):
+    uquiz_list = User_Quiz.objects.all()
+    return render (request, 'user_quiz_list.html', {'uquiz_list':uquiz_list})
 
-# # 사용자가 만든 퀴즈 리스트 조회
-# def my_quizzes(request):
-#     my_quizzes = User_Quiz.objects.filter(user_id = request.user)
-#     return render (request, 'Myquiz.html', {'my_quizzes':my_quizzes})
+# 사용자가 만든 퀴즈 리스트 조회
+def my_quizzes(request):
+    my_quizzes = User_Quiz.objects.filter(user_id = request.user)
+    return render (request, 'Myquiz.html', {'my_quizzes':my_quizzes})
 
-# # 사용자 퀴즈 상세조회 GET
-# def user_quiz(request, pk):
-#     uquiz = get_object_or_404(User_Quiz, user_id = request.user, u_quiz_id=pk)
-#     return render (request, 'Myquiz.html', {'uquiz':uquiz})
+# 사용자 퀴즈 상세조회 GET
+def user_quiz(request, pk):
+    uquiz = get_object_or_404(User_Quiz, user_id = request.user, u_quiz_id=pk)
+    return render (request, 'Myquiz.html', {'uquiz':uquiz})
 
 # 사용자가 만든 퀴즈 수정
 def update_quiz(request, pk):
@@ -162,10 +160,10 @@ def update_quiz(request, pk):
 
         return redirect('my_quiz')
     
-    # return render(
-	# 	request,
-	# 	'quiz/update_quiz.html'
-	# )
+    return render(
+		request,
+		'quiz/make2.html'
+	)
 
 
 # 사용자가 만든 퀴즈 삭제

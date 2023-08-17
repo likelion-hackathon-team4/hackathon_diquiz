@@ -1,0 +1,35 @@
+@font-face {
+    font-family: "TheJamsil5Bold";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+}
+
+.title {
+    font-family: "TheJamsil5Bold";
+}
+
+@font-face {
+    font-family: "GongGothicMedium";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.context {
+    font-family: "GongGothicMedium";
+}
+.d-flex {
+    display: flex;
+}
+.justify-content-center {
+    justify-content: center;
+}
+
+.pp {
+    border: 1px solid #ccc;
+    width: 360px;
+    height: 300px;
+    padding: 10px;
+    margin: 10px;
+}
