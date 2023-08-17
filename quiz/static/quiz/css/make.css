@@ -1,0 +1,72 @@
+@font-face {
+    font-family: "TheJamsil5Bold";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+}
+
+.title {
+    font-family: "TheJamsil5Bold";
+}
+
+@font-face {
+    font-family: "GongGothicMedium";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.context {
+    font-family: "GongGothicMedium";
+}
+.d-flex {
+    display: flex;
+}
+.justify-content-center {
+    justify-content: center;
+}
+
+.quiz-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+}
+.question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ 
+
+  .bt_wrap {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0;
+}
+
+.bt_wrap a {
+    display: inline-block;
+    min-width: 10px;
+    margin-left: 10px;
+    padding: 2px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.bt_wrap a:first-child {
+    margin-left: 0;
+}
+
+.bt_wrap a.on {
+    background: #000;
+    color: #fff;
+}
+
+.bt_wrap a.delete {
+    background-color: #666666;
+    border: #666666;
+    color: white;
+}
