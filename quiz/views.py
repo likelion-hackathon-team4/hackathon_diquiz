@@ -140,10 +140,25 @@ def post_uquiz(request):
 		'quiz/CreateQuiz.html'
 	)
 
+def show_uquiz(request):
+    return render (request, 'quiz/Myquiz.html')
+
 # 전체 사용자 퀴즈 리스트 GET
 def user_quizzes(request):
-    uquiz_list = User_Quiz.objects.all()
-    return render (request, 'quiz/Myquiz.html', {'uquiz_list':uquiz_list})
+    uquiz = User_Quiz.objects.all()
+    uquiz_list = []
+
+    for uquiz in uquiz:
+
+        quiz_json = {
+        "quiz_id":uquiz.u_quiz_id,
+        "content": uquiz.u_content,
+        "answer": uquiz.u_answer,
+        }
+
+        uquiz_list.append(quiz_json)
+    
+    return JsonResponse ({'uquiz_list':uquiz_list})
 
 # 사용자가 만든 퀴즈 리스트 조회
 def my_quizzes(request):
