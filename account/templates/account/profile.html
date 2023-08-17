@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     {% load static %}
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -20,13 +21,22 @@
         <h1>프로필 수정</h1>
         <p>대표 프로필과 별명을 수정하실 수 있습니다.</p>
         <div class="profile-container">
-          <img src="./profile.png" alt="프로필" class="profile-img" />
+          <!-- 프로필 이미지 업로드 폼 -->
+          <form method="post" enctype="multipart/form-data" action="{% url 'edit_profile' %}">
+            {% csrf_token %}
+            {{ profile_form.profile_picture.label_tag }}
+            {{ profile_form.profile_picture }}
+            <button type="submit">프로필 이미지 업로드</button>
+            <input type="file" name="profile_picture">
+            <input type="text" name="nickname" value="{{user.nickname}}">
+        </form>
+          <img src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% endif %}" alt="프로필" class="profile-img" />
           <div style="flex-direction: row">
             <button class="profile-button">사진 변경</button>
             <button class="profile-button">삭제</button>
           </div>
         </div>
-        <div class="nickname">별명</div>
+        <div class="nickname">{{profile.nickname}}</div>
       </div>
       <div class="profile-box">
         <div>내가 만든 문제</div>
