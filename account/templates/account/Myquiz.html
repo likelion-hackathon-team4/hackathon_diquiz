@@ -6,61 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User quiz</title>
     <link rel="stylesheet" href="{% static 'quiz/DailyQuizpage/Myquiz.css'%}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'post/css/communitypage.css' %}">
 </head>
 <body>
-    <nav class="nav-bar">
-        <div class="nav">
-            <div class="page-name">
-                <div class="my-quiz">퀴즈 풀기</div>
-            </div>  
-            <div class="hamburger-menu">
-                <input id="menu__toggle" type="checkbox" class="checkbox" />
-                <label class="menu__btn" for="menu__toggle">
-                    <span></span>
-                </label>
-                <nav class="menu__box">
-                    <ul class="menu__list">
-                        <div class="menu__all"></div>
-                            <a href="#"><div class="profile"><img src="{% static 'quiz/DailyQyizpage/profile.jpg'%}" alt="프로필이미지"></div></a>
-                            <p class="mine"><b>노은아<br>My Point</b></p>
-                            <li><a class="menu__item" href="#my2">프로필</a></li>
-                            <li><a class="menu__item" href="#">오답노트</a></li>
-                            <li><a class="menu__item" href="#">내 포인트관리</a></li>
-                    </ul>
-                </nav>
+    <nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/"><img src="./img/mainlogo.png" alt="main-logo" style="width: 40px; height:40px;"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 context">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">마이페이지</a>
+                    </li>    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">내가 만든 문제</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">오답노트</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">내 포인트 관리</a>
+                    </li>
+                    <li class="nav-item"></li>
+                        <a class="nav-link" href="#">로그아웃</a>
+                    </li>
+                </ul>
             </div>
-            <div class="main-logo">
-                <a href="#" target="_blank">
-                  <img calss="logo-img" src="./image 3.jpg" alt="로고">
-                </a>
-            </div>
-        </div>    
+        </div>
     </nav>
     <div class="wrap">
         <div class="wrap-section">
-            <div class="quiz-container">
-                <h2>퀴즈 풀기</h2>
-                <div class="question">
-                    <p class="question-p" id="quiz-question"></p>
-                </div>
-                <div class="answer">
-                    <p class="question-a">답안을 선택해주세요 (O 또는 X)</p>
-                    <div class="answer-options">
-                        <label class="radioBtn">
-                            <input type="radio" name="answer" value="O" />
-                            <span>O</span>
-                        </label>
-                        <label class="radioBtn">
-                            <input type="radio" name="answer" value="X" />
-                            <span>X</span>
-                        </label>
-                    </div>
-                </div>
-                <button class="submit-answer-button">답안 제출</button>
-                <p class="result-text" id="quiz-result"></p>
+        <div class="example-container">
+            <div class="example">유저들이 만든 퀴즈를 풀어보세요!</div>
+          </div>
+          <div class="quiz-container">
+            {% for quiz in quizzes %}
+            <div class="question">{{ quiz.content }}</div>
+            <div class="answer-form">
+              <button class="answer-button btn-true">O</button>
+              <button class="answer-button btn-false">X</button>
             </div>
+            {% endfor %}
+          </div>
+          <div class="next-page">
+          </div>
+          <div class="btn-section">
+            <div class="btn-tooltip">
+              <button class="hint-button btn-next">다른문제</button>
+              <span class="tooltip">다른 문제를 풀 수 있습니다.</span>
+            </div>
+            <div class="btn-tooltip">
+              <button class="hint-button btn-reset">다시시작</button>
+              <span class="tooltip">다시 시작합니다.</span>
+            </div>
+          </div>
         </div>
-    </div>
-    <script src="{% static 'quiz/DailyQuizpage/Quiz.js'%}"></script>
-</body>
-</html>
+        </div>
+        <script src="{% static 'quiz/DailyQuizpage/MyQuiz.js'%}"></script>
+        </body>
+        </html>
