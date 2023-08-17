@@ -144,7 +144,7 @@ function submitAnswer(quizId, correctAnswer, userAnswer, reference) {
 }
 
 function sendPoints(points) {
-  url = '/quiz/points/'; // 포인트 정보를 보낼 백엔드 엔드포인트 URL
+  url = 'point_info'; // 포인트 정보를 보낼 백엔드 엔드포인트 URL
 
   const data = {
     points: points
