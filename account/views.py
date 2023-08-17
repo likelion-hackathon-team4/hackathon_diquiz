@@ -12,34 +12,48 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+from account.forms import ProfilePictureForm
 
 
 
 def signup(request):
     if request.method == 'GET':
         form = SignUpForm()
+
     elif request.method == 'POST':
+        print("회원가입 실패0")
         form = SignUpForm(request.POST)
+        print("회원가입 실패1")
+        print(form)
         if form.is_valid():
             user = form.save()
+            print("회원가입완료")
             login(request, user)
             return redirect('profile')
+        print("회원가입 실패2")
         
     return render(request, 'account/registerpage.html', {'form': form})
 
 def signin(request):
     if request.method == 'GET':
         form = SignInForm() 
+        
     elif request.method == 'POST':
         form = SignInForm(data=request.POST)
         if form.is_valid():
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
             user = authenticate(request, email=email, password=password)
+
+            # return redirect('/quiz/')
             if user is not None:
+                print("login")
                 login(request, user)
-                return redirect('profile')  # 로그인 후 프로필 페이지로 이동
+                print("로그인 성공")
+                return redirect('/quiz/')
+                # return redirect('profile')  # 로그인 후 프로필 페이지로 이동
             else:
+                print("login nono")
                 messages.error(request, '로그인에 실패하였습니다.')  # 실패 시 메시지 표시
             
     return render(request, 'account/mainlogin.html', {'form': form})
@@ -121,7 +135,6 @@ def login_view(request):
         form = LoginForm()
 
     return render(request, 'account/mainlogin.html', {'form': form})
-
 
 
 def register_view(request):
