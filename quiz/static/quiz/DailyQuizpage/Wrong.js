@@ -10,7 +10,7 @@ function fetchDataAndDisplay() {
     const csrftoken = getCookie('csrftoken');
 
     // GET 요청을 보낼 URL 설정
-    const url = '/api/get_data/';
+    const url = ('quiz/myquiz/');
 
     // GET 요청 설정
     const requestOptions = {
