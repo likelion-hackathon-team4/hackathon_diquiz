@@ -68,6 +68,7 @@ function getCookie(name) {
               buttonTrue.disabled = true; // O 버튼 비활성화
               buttonFalse.disabled = true; // X 버튼도 비활성화
             });
+            
             answerFormDiv.appendChild(buttonTrue);
   
             // X 버튼 생성 및 클릭 이벤트 설정

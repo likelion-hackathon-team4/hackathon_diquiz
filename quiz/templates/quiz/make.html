@@ -44,7 +44,8 @@
             <h1>내가 만든 문제</h1>
         </div>
             <form method="post" action="#">
-                <!--{% for uquiz in my_quizzes %}-->
+                {%csrf_token%}
+                {% for uquiz in my_quizzes %}
                     <div class="quiz-container context my-3 py-4">
                         <div class="question">
                             <div>
@@ -57,7 +58,7 @@
                         </div>
                     </div>
                 </a>
-                <!--{% endfor %}-->
+                {% endfor %}
             </form>
     </body>
 </html>
