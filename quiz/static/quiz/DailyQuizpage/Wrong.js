@@ -1,28 +1,44 @@
-// 백엔드 서버에 데이터를 요청하고 받아옴
-fetch('quiz/myquiz/'(wrong_quiz))  // 명세서 URL로 
-    .then(response => response.json())  // JSON 형태로 응답 처리
-    .then(data => {
-        const quizContainer = document.querySelector('.quiz-container');
-        
-        // 서버에서 받은 데이터를 화면에 출력.
-        data.quiz_list.forEach(quiz => {
-            const questionElement = document.querySelector('question');
-            
-            // 문제 내용 출력
-            const contentElement = document.querySelector('content');
-            contentElement.textContent = quiz.content;
-            
-            // 정답 출력
-            const answerElement = document.querySelector('correct');
-            answerElement.textContent = '정답 : ' + quiz.answer;
-            
-            questionElement.appendChild(contentElement);
-            questionElement.appendChild(answerElement);
-            
-            quizContainer.appendChild(questionElement);
-        });
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+// CSRF 토큰을 가져오는 함수
+function getCookie(name) {
+    let cookie = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return cookie ? cookie[2] : null;
+}
 
+// GET 요청을 보내고 받아온 데이터를 출력하는 함수
+function fetchDataAndDisplay() {
+    // CSRF 토큰을 가져옴
+    const csrftoken = getCookie('csrftoken');
+
+    // GET 요청을 보낼 URL 설정
+    const url = ('quiz/myquiz/');
+
+    // GET 요청 설정
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken
+        }
+    };
+
+    // GET 요청 보내기
+    fetch(url, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            // 데이터를 받아와서 출력
+            const outputContainer = document.getElementById('output-container');
+            data.forEach(item => {
+                const content = item.content;
+                const answer = item.answer;
+                const quizDiv = document.createElement('div');
+                quizDiv.innerHTML = `<p class="content">${content}</p><p class="correct">${answer}</p>`;
+                outputContainer.appendChild(quizDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+// 호출하여 데이터 가져오기 및 출력
+fetchDataAndDisplay();
