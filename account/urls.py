@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-
-from account import views
-from django.contrib import admin
-from django.urls import path, include
-
-
-urlpatterns = [
-    path('', views.test),
-]
-=======
 from django.urls import path
 from . import views
 from django.urls import path
@@ -35,4 +24,3 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
 
->>>>>>> main

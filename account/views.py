@@ -1,11 +1,4 @@
 from django.shortcuts import render
-<<<<<<< HEAD
-
-def test(request):
- return render(request, 'account/registerpage.html')
-# Create your views here.
-
-=======
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .forms import SignUpForm, SignInForm
@@ -170,4 +163,3 @@ def profile(request):
         form = ProfilePictureForm(instance=user)
     
     return render(request, 'profile.html', {'form': form})
->>>>>>> main
