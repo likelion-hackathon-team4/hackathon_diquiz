@@ -13,7 +13,7 @@
   <body class="context">
     <nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/"><img src="./img/mainlogo.png" alt="main-logo" style="width: 40px; height:40px;"></a>
+            <a class="navbar-brand" href="/"><img src="{% static 'post/source/img/mainlogo.png' %}" alt="main-logo" style="width: 40px; height:40px;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -33,14 +33,14 @@
                         <a class="nav-link" href="#">내 포인트 관리</a>
                     </li>
                     <li class="nav-item"></li>
-                        <a class="nav-link" href="#">로그아웃</a>
+                        <a class="nav-link" href="{% url 'logout' %}">로그아웃</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="board_wrap">
-        <div class="board_title">
+        <div class="board_title title">
             <strong style>게시판 목록</strong>
         </div>
         <div class="board_list_wrap">
@@ -51,9 +51,9 @@
                     <div class="date">작성일</div>
                     <div class="count">조회</div>
                 </div>
-                {% for board_list in boards %} 
+                {% for board in boards %} 
                 <div class="my-3">
-                    <div class="title"><a href="{% board/<int:board_id> %}">{{ board.title }}</a></div>
+                    <div class="title"><a href="{% url 'board_detail' board_id=board.id %}">{{ board.title }}</a></div>
                     <div class="writer">{{ board.author }}</div>
                     <div class="date">{{ board.created_at }}</div>
                     <div class="count">{{ board.views }}</div>
