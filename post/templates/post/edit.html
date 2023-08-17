@@ -50,7 +50,7 @@
             <strong>게시물 수정</strong>
             <p>게시물을 수정해주세요.</p>
         </div>
-        <form method="post"> 
+        <form method="post" enctype="multipart/form-data"> 
             {%csrf_token%}
             <div class="board_write_wrap">
                 <div class="board_write">
@@ -66,7 +66,7 @@
                             <dd>{{board.author.username}}</dd>
                         </dl>
                         <dl>
-                            <dt><input type="file" name="SelectFile" /></dt>`
+                            <dt><input value="{{board.photo.url}}" type="file" name="photo" /></dt>
                         </dl>
                     </div>
                     <div class="cont">

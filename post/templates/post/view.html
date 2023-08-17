@@ -64,39 +64,42 @@
                     </dl>
                     <dl>
                         <dt>좋아요</dt>
-                        <dd>{{ board.likes }}</dd>
+                        <dd>{{ board.likes.count }}</dd>
                     </dl>
                 </div>
                 <div class="cont">
-                    <div>
-                        <img src="{{ board.photo.url }}"><br> {{ board.content }}<br><br><br> <div class="like" id = '#like_section'>
-                        {% if user.is_authenticated %}
-                        <form action = "{% url 'like_board' board_id=board.id %}" method = "post">
-                            {% csrf_token %}
-                            {% if know_like %}
-                                <button type = "submit" class = "btn btn-secondary" id = "like" name = "post_id" value = "{{post.id}}">좋아요 취소</button>
-                            {% else %}
-                            <button type = "submit" class = "btn btn-primary" id = "like" name = "post_id" value = "{{post.id}}">좋아요</button>
-                            {% endif %}
-                        </form>
-                        {% endif %}
-                        <br>
-                    
-                    </div><br>
-                </div>
-                
-            </div>
-            <!--for문으로 대체.-->
+    <div>
+        {% if board.photo %}
+        <img src="{{ board.photo.url }}" alt="{{ board.title }}"><br> {% endif %} {{ board.content }}<br><br><br> 
+        <div class="like" id="like_section">
+            {% if user.is_authenticated %}
+            <form action="{% url 'like_board' board_id=board.id %}" method="post">
+                {% csrf_token %}
+                {% if know_like %}
+                    <button type="submit" class="btn btn-secondary" id="like" name="post_id" value="{{ board.id }}">좋아요 취소</button>
+                {% else %}
+                    <button type="submit" class="btn btn-primary" id="like" name="post_id" value="{{ board.id }}">좋아요</button>
+                {% endif %}
+            </form>
+            {% endif %}
+            <br>
+        </div>
+    </div><br>
+</div>
+            {% for comment in comments %}
             <div class="dda my-3" style="border: 1px solid; padding: 15px;">
-                <!--댓글작성자 자리-->
-                <p><!--댓글 내용 자리--></p>
+                {{ comment.author.username }}
+                <p>
+                    {{ comment.content }}
+                </p>
             </div>
-            <!--여기까지 for문-->
-            <form method="post" id="commentForm">
+            {% endfor %}
+            <form method="post" id="commentForm" action="{% url 'add_comment' board_id=board.id %}">
+                {%csrf_token%}
                 <div class="my-3">
                     <p>
                         <div class="comment" name="content">
-                            <input class="dda-content py-2" type="text" id="commentInput" placeholder="댓글 내용을 입력하세요~!" style="width:150px">
+                            <input name='content' class="dda-content py-2" type="text" id="commentInput" placeholder="댓글 내용을 입력하세요~!" style="width:150px">
                         </div>
                     </p>
                     <p>

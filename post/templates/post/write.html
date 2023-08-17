@@ -45,7 +45,7 @@
             <strong>게시물 작성</strong>
             <p>게시물을 작성해주세요.</p>
         </div>
-        <form method="post"> 
+        <form method="post" enctype="multipart/form-data"> 
             {%csrf_token%}
             <div class="board_write_wrap">
                 <div class="board_write">
