@@ -1,6 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, UserProfile
+from .models import User
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import UserProfile
+
 
 class SignUpForm(UserCreationForm):
     # Add any additional fields you want to include in the registration form
@@ -25,3 +29,6 @@ class ProfilePictureForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['profile_picture']
+        
+        
+        

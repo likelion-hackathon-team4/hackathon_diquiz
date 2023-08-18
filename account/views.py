@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .forms import SignUpForm, SignInForm
 from django.contrib import messages
-from .models import User
+from .models import User, UserProfile
 from .forms import UserForm
 from django.shortcuts import render
 from .forms import LoginForm
@@ -14,6 +14,19 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from account.forms import ProfilePictureForm
 
+
+@login_required
+def delete_profile_image(request):
+    user = request.user
+    try:
+        user_profile = UserProfile.objects.get(user=user)
+        if user_profile.profile_picture:
+            user_profile.profile_picture.delete()  # Delete the profile picture file
+            user_profile.profile_picture = None     # Clear the profile_picture field in the model
+            user_profile.save()
+        return redirect('profile')  # Redirect to the profile page after deletion
+    except UserProfile.DoesNotExist:
+        return redirect('profile')  # Redirect to the profile page if user profile doesn't exist
 
 
 def signup(request):
@@ -45,12 +58,20 @@ def signin(request):
             password = form.cleaned_data.get('password')
             user = authenticate(request, email=email, password=password)
 
+<<<<<<< Updated upstream
             # return redirect('/quiz/')
+=======
+            return redirect('/quiz/')
+>>>>>>> Stashed changes
             if user is not None:
                 print("login")
                 login(request, user)
+<<<<<<< Updated upstream
                 print("로그인 성공")
                 return redirect('/quiz/')
+=======
+                # return redirect('/quiz/show/')
+>>>>>>> Stashed changes
                 # return redirect('profile')  # 로그인 후 프로필 페이지로 이동
             else:
                 print("login nono")
@@ -76,7 +97,6 @@ from .forms import UserForm  # UserForm은 프로필 이미지 업로드를 위�
 
 def upload_profile_image(request):
     user = request.user
-    
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES)
         if form.is_valid():
@@ -88,21 +108,22 @@ def upload_profile_image(request):
                 user.save()
             
             if profile_image:
-                fs = FileSystemStorage()
-                profile_image_name = fs.save(profile_image.name, profile_image)
-                user.profile_picture = profile_image_name  # 파일 이름만 저장
+                # 파일 저장을 위한 파일 시스템 저장소 설정
+                fs = FileSystemStorage(location=settings.MEDIA_ROOT)
+                
+                # 업로드된 파일을 임시 디렉토리에서 영구적으로 저장
+                profile_image_path = fs.save(profile_image.name, profile_image)
+                
+                # 사용자 모델의 profile_picture 필드에 파일 경로 저장
+                user.profile_picture = profile_image_path
                 user.save()
-
-                return redirect('profile')
-
             
             return redirect('profile')  # 등록 후에 프로필 페이지로 리디렉션
     
     else:
-        form = UserForm(instance=user)  # user.profile이 아닌 user로 수정
+        form = UserForm(instance=user.profile)
     
-    return render(request, 'account/profile.html', {'form': form, 'profile': user}) # edit_profile.html 프로필 수정하는 폼 필요해용
-
+    return render(request, 'account/profile.html', {'form': form, 'profile': user.profile})
 
 def update_intro_text(request):
     user = request.user              # 상태메시지 또는 자기소개글 등록
