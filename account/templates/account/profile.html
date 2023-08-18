@@ -8,7 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'account/css/profile.css' %}" >
   </head>
-  <body>
+  <body style="background-color: rgb(224, 224, 224);">
     <div
       style="
         display: flex;
@@ -17,7 +17,7 @@
         align-items: center;
       "
     >
-      <div class="profile-box">
+      <div class="profile-box" style="width: 800px; height:800px; background-color: white;">
         <h1>프로필 수정</h1>
         <h4 class="my-4" style="color: rgb(100, 100, 100);">프로필 이미지 수정</h4>
         <div class="profile-container">
@@ -31,11 +31,10 @@
             <h4 class="my-2" style="color: rgb(100, 100, 100);">닉네임 수정</h4>
             <input type="text" name="nickname" value="{{user.nickname}}">
             <button type="submit">프로필 이미지 업로드 및 닉네임 수정</button>
+            <img src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% endif %}" alt="프로필" class="profile-img" />
+          <div class="nickname" style="background-color: #139F17;">{{profile.nickname}}</div>
           </form>
-          <img src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% endif %}" alt="프로필" class="profile-img" />
-        <div class="nickname">{{profile.nickname}}</div>
       </div>
     </div>
   </body>
 </html>
-
