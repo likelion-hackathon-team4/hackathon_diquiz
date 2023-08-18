@@ -196,7 +196,6 @@ function loadQuizzes() {
           buttonNext.textContent = '다음 문제';
           buttonNext.addEventListener('click', loadNextQuiz);
           quizContainer.appendChild(buttonNext);
-
         } else {
           // 모든 퀴즈를 푼 경우 마지막 메시지 표시
           const endMessageDiv = document.createElement('div');

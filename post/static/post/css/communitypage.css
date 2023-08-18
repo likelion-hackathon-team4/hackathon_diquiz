@@ -315,15 +315,6 @@ a {
   border: 0;
   resize: vertical;
 }
-
-@media (max-width: 1000px) {
-  .board_wrap {
-      width: 100%;
-      min-width: 320px;
-      padding: 0 30px;
-      box-sizing: border-box;
-  }
-
   .board_list .num,
   .board_list .writer,
   .board_list .count {
@@ -395,16 +386,6 @@ a {
   .board_write .info input[type="text"],
   .board_write .info input[type="password"] {
       width: 100%;
+
   }
-}
 
-.dda {
-  border: 3px black solid;
-  background-color: white;
-}
-
-
-.dda-content {
-  text-align: center;
-
-}
