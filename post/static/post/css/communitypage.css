@@ -386,4 +386,6 @@ a {
   .board_write .info input[type="text"],
   .board_write .info input[type="password"] {
       width: 100%;
+
   }
+

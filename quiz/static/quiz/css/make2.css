@@ -1,68 +1,121 @@
+
 @font-face {
     font-family: "TheJamsil5Bold";
     src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
-  }
-  
-  .title {
+}
+
+.title {
     font-family: "TheJamsil5Bold";
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: "GongGothicMedium";
     src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff") format("woff");
     font-weight: normal;
     font-style: normal;
-  }
-  .coment {
-    border: 1px solid black;
-    height: 30px;
-  }
-  .submit-button {
-    float: right;
-  }
-  .like {
-    float: right;
-  }
-  
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  
-  html {
-    font-size: 10px;
-  }
-  
-  ul, li {
-    list-style: none;
-  }
-  
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+}
+
+.context {
+    font-family: "GongGothicMedium";
+}
+
+body {
+    background-color : #cae8fe;
+}
+
+
+.div-quiz-title {
+   
+}
 
 .d-flex {
     display: flex;
 }
-.justify-content-center {
-    justify-content: center;
-}
+
 
 .pp {
-    border: 1px solid #ccc;
-    width: 360px;
-    height: 300px;
-    padding: 10px;
-    margin: 10px;
+    border: 3px solid white;
+    border-radius: 10%;
+    background-color: white;
+    width: 600px;
+    height: 600px;
+    z-index: 3000;
 }
-.quiz-contents label,
-.quiz-answer label {
-    font-size: 30px;
+.quiz-title {
+    text-align: center;
+    /*border-bottom: 3px solid #139F17;*/
+    background-color: #09a2ef;
+    border: 1px solid #09a2ef;
+    border-radius: 10px;
+    width: 300px;
 }
-.form-check-label[for="answerTrue"],
-.form-check-label[for="answerFalse"] {
-    font-size: 15px;
+
+.middle-title {
+    border-bottom: 3px solid #81d9ff;
+}
+
+.q {
+    text-align: center;
+}
+
+.answer {
+    text-align: center;
+}
+
+.radiobutton {
+    text-align: center;
+}
+
+.submit-answer-button {
+    text-align: center;
+}
+
+.main-sb-bt {
+    text-align: center;
+}
+
+.left-cloud {
+    position: absolute;
+    width: 300px;
+    top: 100px;
+    z-index: -1;
+}
+
+.right-cloud {
+    position: absolute;
+    width: 300px;
+    z-index: -1;
+    top: 200px;
+    right: 0px;
+}
+
+.sun {
+    position: absolute;
+    width: 200px;
+    z-index: -1;
+    right: 0px;
+}
+
+.submit-answer-buttonv {
+    background-color: #139F17;
+}
+
+
+.center-cloud {
+    position: absolute;
+    z-index: -100;
+    width: 300px;
+    right: 250px;
+    bottom: 200px;
+}
+
+.center-cloud2 {
+    position: absolute;
+    z-index: -100;
+    width: 400px;
+    left: 30px;
+    bottom: 30px;
+
 }
