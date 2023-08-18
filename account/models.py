@@ -48,6 +48,7 @@ class User(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_superuser=models.BooleanField(default=False)
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    user_point = models.PositiveIntegerField(default=0)
 
     objects = UserManager()
 
@@ -68,6 +69,14 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def str(self):
         return self.user.username
+    
+class Point(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    amount = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.user.email} - {self.amount} points"

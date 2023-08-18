@@ -113,7 +113,7 @@ function submitAnswer(quizId, correctAnswer, userAnswer, reference) {
     quiz_id: quizId,
     user_answer: userAnswer
   };
-
+  console.log(data);
   // 백엔드에 데이터 전송
   url = `/quiz/${encodeURIComponent(quizId)}/`;
 
@@ -144,12 +144,11 @@ function submitAnswer(quizId, correctAnswer, userAnswer, reference) {
 }
 
 function sendPoints(points) {
-  url = 'point_info'; // 포인트 정보를 보낼 백엔드 엔드포인트 URL
+  url = '/account/point_info/'; // 포인트 정보를 보낼 백엔드 엔드포인트 URL
 
   const data = {
     points: points
   };
-
   fetch(url, {
     method: 'POST',
     headers: {
@@ -163,6 +162,7 @@ function sendPoints(points) {
     console.log('포인트 정보 전송 완료:', data);
   })
   .catch(error => {
+    console.log(JSON.stringify(data))
     console.error('포인트 정보 전송 오류:', error);
   });
 }

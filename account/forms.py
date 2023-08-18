@@ -30,5 +30,12 @@ class ProfilePictureForm(forms.ModelForm):
         model = UserProfile
         fields = ['profile_picture']
         
+class PointUpdateForm(forms.Form):
+    new_point = forms.IntegerField(min_value=0, label="새로운 포인트")
+    
+class PointInfoForm(forms.Form):
+    user = forms.ModelChoiceField(queryset=User.objects.all())
+    amount = forms.IntegerField()
+        
         
         

@@ -1,6 +1,10 @@
-from django.shortcuts import render
+import json
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404, render
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
+
+from quiz.models import Quiz
 from .forms import SignUpForm, SignInForm
 from django.contrib import messages
 from .models import User, UserProfile
@@ -13,6 +17,15 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from account.forms import ProfilePictureForm
+from account.forms import PointUpdateForm
+from django.contrib.auth.decorators import login_required
+from .models import User
+from .forms import PointUpdateForm
+from django.contrib.auth.decorators import login_required
+from .models import Point
+from .forms import PointInfoForm
+
+
 
 
 @login_required
@@ -58,24 +71,15 @@ def signin(request):
             password = form.cleaned_data.get('password')
             user = authenticate(request, email=email, password=password)
 
-<<<<<<< Updated upstream
-            # return redirect('/quiz/')
-=======
-            return redirect('/quiz/')
->>>>>>> Stashed changes
+            #return redirect('/profile/')
             if user is not None:
                 print("login")
                 login(request, user)
-<<<<<<< Updated upstream
-                print("로그인 성공")
-                return redirect('/quiz/')
-=======
-                # return redirect('/quiz/show/')
->>>>>>> Stashed changes
-                # return redirect('profile')  # 로그인 후 프로필 페이지로 이동
-            else:
-                print("login nono")
-                messages.error(request, '로그인에 실패하였습니다.')  # 실패 시 메시지 표시
+                #return redirect('/quiz/show/')
+                return redirect('profile')  # 로그인 후 프로필 페이지로 이동
+    else:
+        print("login nono")
+        messages.error(request, '로그인에 실패하였습니다.')  # 실패 시 메시지 표시
             
     return render(request, 'account/mainlogin.html', {'form': form})
 
@@ -85,6 +89,7 @@ def signout(request):
 
 
 # 여기 부터는 프로필 수정 페이지 입니다.
+
 def view_profile(request):
     profile = request.user
     return render(request, 'account/profile.html', {'profile': profile})
@@ -137,10 +142,6 @@ def update_intro_text(request):
             return redirect('view_profile')  # 프로필 페이지로 리디렉션
     
     return render(request, 'account/profile.html', {'profile': profile})  # 등록 후에 다시 프로필 페이지를 리디렉션
-
-
-def point_page(request):
-    return render(request, 'account/Pointpage.html') # 포인트 페이지
 
 
 
@@ -197,3 +198,72 @@ def profile(request):
         form = ProfilePictureForm(instance=user)
     
     return render(request, 'profile.html', {'form': form})
+
+@login_required
+def point_info(request):
+    user = get_object_or_404(User, email=request.user)
+    if request.method == "POST":
+        add_point = json.loads(request.body)["points"]
+        user.points += add_point
+        user.save()
+    return render(request, 'account/Pointpage.html', {'user': user})
+
+# @login_required
+# def update_point(request):
+#     if request.method == 'POST':
+#         form = PointUpdateForm(request.POST)
+#         if form.is_valid():
+#             new_point = form.cleaned_data['new_point']
+#             user = request.user
+#             user.user_point = new_point
+#             user.save()
+#             return redirect('point_info')  # 포인트 정보 페이지로 리디렉션
+#     else:
+#         form = PointUpdateForm()
+
+#     return render(request, 'account/Pointpage.html', {'form': form})
+
+
+
+# # @login_required
+# def point_info_view(request, pk):
+#     # user_quiz = get_object_or_404(Quiz, quiz_id=pk)
+#     # if request.method == 'POST':
+#     #     payment_data = json.loads(request.body)
+
+#     #     ans = payment_data['point_info']
+
+#     #     if user_quiz.answer == ans:
+#     #         user_quiz.result = True
+#     #         user_quiz.save()
+
+#     #         # 포인트 적립 로직 추가
+#     #         point_amount = 10  # 포인트 적립량
+#     #         user = request.user
+
+#     #         # 사용자의 포인트 정보 가져오기
+#     #         user_point, created = Point.objects.get_or_create(user=user)
+            
+#     #         # 적립된 포인트 추가
+#     #         user_point.amount += point_amount
+#     #         user_point.save()
+
+#     #     return JsonResponse({"message": "답변 저장 및 포인트 적립 성공"})
+
+#     return HttpResponse('<h1>fuck</h1>')
+
+
+
+def user_point(request):
+    user_point = get_object_or_404(User, id=request.user.id)
+    
+    if request.method == 'POST':
+        payment_data = json.loads(request.body)
+        point = payment_data['point_info']
+        
+        user_point.user_point += point
+        user_point.save()
+
+        return JsonResponse({"message": "저장 성공"})
+
+    return redirect('random_quiz')
