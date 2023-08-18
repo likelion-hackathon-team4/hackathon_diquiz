@@ -19,17 +19,101 @@
 .context {
     font-family: "GongGothicMedium";
 }
+
+body {
+    background-color : #cae8fe;
+}
+
+
+.div-quiz-title {
+   
+}
+
 .d-flex {
     display: flex;
 }
-.justify-content-center {
-    justify-content: center;
-}
+
 
 .pp {
-    border: 1px solid #ccc;
-    width: 360px;
-    height: 300px;
-    padding: 10px;
-    margin: 10px;
+    border: 3px solid white;
+    border-radius: 10%;
+    background-color: white;
+    width: 600px;
+    height: 600px;
+    z-index: 3000;
+}
+.quiz-title {
+    text-align: center;
+    /*border-bottom: 3px solid #139F17;*/
+    background-color: #09a2ef;
+    border: 1px solid #09a2ef;
+    border-radius: 10px;
+    width: 300px;
+}
+
+.middle-title {
+    border-bottom: 3px solid #81d9ff;
+}
+
+.q {
+    text-align: center;
+}
+
+.answer {
+    text-align: center;
+}
+
+.radiobutton {
+    text-align: center;
+}
+
+.submit-answer-button {
+    text-align: center;
+}
+
+.main-sb-bt {
+    text-align: center;
+}
+
+.left-cloud {
+    position: absolute;
+    width: 300px;
+    top: 100px;
+    z-index: -1;
+}
+
+.right-cloud {
+    position: absolute;
+    width: 300px;
+    z-index: -1;
+    top: 200px;
+    right: 0px;
+}
+
+.sun {
+    position: absolute;
+    width: 200px;
+    z-index: -1;
+    right: 0px;
+}
+
+.submit-answer-buttonv {
+    background-color: #139F17;
+}
+
+
+.center-cloud {
+    position: absolute;
+    z-index: -100;
+    width: 300px;
+    right: 250px;
+    bottom: 200px;
+}
+
+.center-cloud2 {
+    position: absolute;
+    z-index: -100;
+    width: 400px;
+    left: 30px;
+    bottom: 30px;
 }
