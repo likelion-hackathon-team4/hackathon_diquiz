@@ -40,39 +40,51 @@
                 </div>
             </div>
         </nav>
-        <div class="my-3 mx-3 title ">
-            <p style="font-size: 40px;">퀴즈 수정하기</p>
-        </div>
-        <form method="post" action="#">
-            {%csrf_token%}
-            <div class="pp context text-align-center">
-                <div class="quiz-contents">
-                    <dl>
-                        <dt style="font-size: 30px;">퀴즈 문제</dt>
-                        <dd><input type="text" name="title" placeholder="제목 입력" value="{{uquiz_id}}"></dd>
-                    </dl>
-                </div>
-                <div class="quiz-answer">
-                    <dl>
-                        <dt style="font-size: 30px;">답안 선택</dt>
-                        <div class="answer">
-                            <p class></p>
-                            <p class="question-a">답안을 선택해주세요 (O 또는 X)</p>
-                            <div class="answer-options">
-                                <label class="radioBtn">
-                                    <input type="radio" name="answer" value="True" />
-                                    <span>O</span>
-                                </label>
-                                <label class="radioBtn">
-                                    <input type="radio" name="answer" value="False" />
-                                    <span>X</span>
-                                </label>
-                            </div>
+        <img class="left-cloud" src="./img/cloud-1.png" alt="left-cloud">
+        <img class="right-cloud" src="./img/cloud-2.png" alt="rignt-cloud">
+        <img class="sun" src="./img/sun.webp" alt="sun">
+        <img class="center-cloud" src="./img/garden-cloud-4.png" alt="center-cloud">
+        <img class="center-cloud2" src="./img/garden-cloud-4.png" alt="center-cloud">
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="d-flex justify-content-center align-items-center">
+                <form method="post" action="#">
+                    {%crsf_token%}
+                    <div class="pp context my-3 py-3">
+                        <div class="div-quiz-title d-flex justify-content-center my-3 mx-3 title">
+                            <p class="quiz-title" style="font-size: 40px; color: white;">퀴즈 수정하기</p>
                         </div>
-                    </dl>
-                </div>
-                <button class="submit-answer-button">답안 제출</button>
+                        <div class="quiz-contents">
+                            <dl class="q">
+                                <dt class=" my-4" style="font-size: 30px; color:#09a2ef;">퀴즈 문제</dt>
+                                <p class="question-a my-1">문제를 수정해주세요!</p>
+                                <dd class="my-3"><input type="text" name="title" placeholder="answp 입력" value="{{uquiz_id}}"></dd>
+                            </dl>
+                        </div>
+                        <div class="quiz-answer d-flex justify-content-center align-items-center">
+                            <dl>
+                                <dt class=" d-flex justify-content-center align-items-center my-4" style="font-size: 30px; color:#09a2ef;">답안 선택</dt>
+                                <div class="answer">
+                                    <p class="question-a my-1">답안을 선택해주세요!<br> (O 또는 X)</p>
+                                    <div class="answer-options my-4">
+                                        <p>
+                                            <label class="radioBtn mx-4">
+                                                <input type="radio" name="answer" value="O" />
+                                                <span>O</span>
+                                            </label>
+                                            <label class="radioBtn mx-4">
+                                                <input type="radio" name="answer" value="X" />
+                                                <span>X</span>
+                                            </label>
+                                        </p>
+                                    </div>
+                                </div>
+                            </dl>
+                        </div>
+                        <div class="main-sb-bt my-4">
+                            <button class="submit-answer-button">답안 수정</button>
+                        </div>    
+                    </div>
+                </form>
             </div>
-        </form>
     </body>
 </html>
