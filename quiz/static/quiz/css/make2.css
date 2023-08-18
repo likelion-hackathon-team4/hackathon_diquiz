@@ -3,22 +3,47 @@
     src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
-}
-
-.title {
+  }
+  
+  .title {
     font-family: "TheJamsil5Bold";
-}
-
-@font-face {
+  }
+  
+  @font-face {
     font-family: "GongGothicMedium";
     src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff") format("woff");
     font-weight: normal;
     font-style: normal;
-}
+  }
+  .coment {
+    border: 1px solid black;
+    height: 30px;
+  }
+  .submit-button {
+    float: right;
+  }
+  .like {
+    float: right;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    font-size: 10px;
+  }
+  
+  ul, li {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-.context {
-    font-family: "GongGothicMedium";
-}
 .d-flex {
     display: flex;
 }
@@ -32,4 +57,12 @@
     height: 300px;
     padding: 10px;
     margin: 10px;
+}
+.quiz-contents label,
+.quiz-answer label {
+    font-size: 30px;
+}
+.form-check-label[for="answerTrue"],
+.form-check-label[for="answerFalse"] {
+    font-size: 15px;
 }

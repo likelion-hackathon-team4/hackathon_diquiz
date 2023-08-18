@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{% static 'post/css/communitypage.css' %}">
     <title>Point</title>
 </head>
-<body>
+<body style="background-color: #cae8fe;">
     <nav th:fragment="navbarFragment" class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <div class="container-fluid">
             <a class="navbar-brand" href="/"><img src="{% static 'quiz/DailyQuizpage/mainlogo.png' %}" alt="main-logo" style="width: 40px; height:40px;"></a>
@@ -30,7 +30,7 @@
                         <a class="nav-link" href="#">내가 만든 문제</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">오답노트</a>
+                        <a class="nav-link" href="#">내가 틀린 문제</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">내 포인트 관리</a>
@@ -41,20 +41,13 @@
                 </ul>
             </div>
         </div>
-    </nav>
-            </div> 
-            <div class="main-logo">
-                <a href="#" target="_blank">
-                    <img class="logo-img" src="{% static 'account/Pointpage/logo.jpg'%}" alt="로고">
-                </a>
-            </div>
-        </div>    
+    </nav> 
     </nav>
     <div class="wrap">
-        <div class="wrap-section">
+        <div class="wrap-section" style="background-color: #ffffff;">
             <div class="point-container">
-                <p class="explain1">적립 포인트 확인</p>
-                <p class="explain2">누적된 적립포인트를 확인 할 수 있습니다.</p>
+                <p class="explain1" style="font-size: 47px;">적립 포인트 확인</p>
+                <p class="explain2" style="font-size: 17px">누적된 적립포인트를 확인 할 수 있습니다.</p>
                 <span class="point-bar-container">
                     <progress id="point-bar" class="point-bar" value="0" max="100"></progress>
                     <div class="icon-point">
@@ -64,7 +57,7 @@
                 </span>
         </div>
         <div class="checkpoint-container">
-            <div class="all-point">
+            <div class="all-point" style="background-color: #96dcff;">
                 <p>누적 포인트: {{ current_points }}P</p>
             </div>
         </div>

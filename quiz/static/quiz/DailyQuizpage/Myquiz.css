@@ -18,7 +18,7 @@ body {
 }
   .wrap {
     text-align: center;
-    background-color: #cff3c8;
+    background-color: #c7dde5;
   }
   .wrap-section {
     width: 1500px;
@@ -63,7 +63,7 @@ body {
   }
     /* 버튼 스타일링 */
     .next-button {
-      background-color: #7f76e3;
+      background-color: #00e435;
       color: white;
       border: none;
       padding: 10px 20px;
@@ -111,7 +111,7 @@ body {
     border-radius: 20px;
     border: none;
     padding: 15px;
-    background-color: #7f76e3;
+    background-color: #00e435;
     color: white;
     font-size: 20px;
     cursor: pointer;
@@ -120,7 +120,7 @@ body {
       border-radius: 20px;
       border: none;
       padding: 15px;
-      background-color: #7f76e3;
+      background-color: #00e435;
       color: red;
       font-size: 20px;
       cursor: pointer;
