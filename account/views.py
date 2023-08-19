@@ -199,7 +199,9 @@ def profile(request):
     
     return render(request, 'profile.html', {'form': form})
 
-@login_required
+
+# 자바스트립트 언어, json 이해 필요. (추가 리펙토링 꼭 필수)
+@login_required                               
 def point_info(request):
     user = get_object_or_404(User, email=request.user)
     if request.method == "POST":
